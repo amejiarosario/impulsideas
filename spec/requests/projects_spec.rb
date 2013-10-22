@@ -1,11 +1,12 @@
 require 'spec_helper'
 
-describe "Projects" do
-  describe "GET /projects" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get projects_path
-      response.status.should be(200)
-    end
-  end
+feature "Creating new projects" do
+  scenario "it succeed with all the required fields are provided"
+  scenario "created projects are displayed in the home page"
+  scenario "created projects can be shared on facebook"
+end
+
+feature "Backers" do
+  scenario "Backers can make donations to a project"
+  scenario "Backers can cancel donations"
 end

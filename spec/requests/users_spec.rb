@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 feature "Signing in" do
   background do
     FactoryGirl.create :user, :email => 'user@example.com', :password => 'caplin2013'
@@ -20,7 +22,11 @@ feature "Signing in" do
     fill_in 'Email', :with => other_user.email
     fill_in 'Password', :with => other_user.password
     click_button 'Sign in'
-    # save_and_open_page
     expect(page).to have_content 'Invalid email or password'
   end
+end
+
+feature 'Signing up' do
+  scenario 'Signing up with correct credentials'
+  scenario 'Signing up with missing fields'
 end
