@@ -45,6 +45,8 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'devise'
+gem 'bootstrap-sass'
+gem 'simple_form', '>= 3.0.0.rc'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
