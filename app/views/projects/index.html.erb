@@ -3,6 +3,13 @@
 <table>
   <thead>
     <tr>
+      <th>Title</th>
+      <th>Short description</th>
+      <th>Extended description</th>
+      <th>Funding goal</th>
+      <th>Funding duration</th>
+      <th>Category</th>
+      <th>Tags</th>
       <th></th>
       <th></th>
       <th></th>
@@ -12,6 +19,13 @@
   <tbody>
     <% @projects.each do |project| %>
       <tr>
+        <td><%= project.title %></td>
+        <td><%= project.short_description %></td>
+        <td><%= project.extended_description %></td>
+        <td><%= project.funding_goal %></td>
+        <td><%= project.funding_duration %></td>
+        <td><%= project.category %></td>
+        <td><%= project.tags %></td>
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>

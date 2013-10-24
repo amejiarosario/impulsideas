@@ -1,4 +1,39 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <strong>Title:</strong>
+  <%= @project.title %>
+</p>
+
+<p>
+  <strong>Short description:</strong>
+  <%= @project.short_description %>
+</p>
+
+<p>
+  <strong>Extended description:</strong>
+  <%= @project.extended_description %>
+</p>
+
+<p>
+  <strong>Funding goal:</strong>
+  <%= @project.funding_goal %>
+</p>
+
+<p>
+  <strong>Funding duration:</strong>
+  <%= @project.funding_duration %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @project.category %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <%= @project.tags %>
+</p>
+
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
