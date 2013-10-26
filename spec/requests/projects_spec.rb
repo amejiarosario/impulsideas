@@ -5,7 +5,6 @@ feature "Projects" do
 
   scenario 'anonymous users cannot create projects' do
     visit new_project_path
-    # save_and_open_page
     expect(page).to have_content 'You need to sign in or sign up before continuing'
   end
 
@@ -33,21 +32,25 @@ feature "Projects" do
   end
 
   scenario 'creator can modify the project' do
-    project = FactoryGirl.create :project, user: user
+    creator = FactoryGirl.create :user
+    project = FactoryGirl.create :project, user: creator
+    login_as creator, scope: :user
     visit edit_project_path(project)
     fill_in 'Short description', with: 'support us!'
     click_button 'Update Project'
     expect(page).to have_content 'support us!'
   end
 
-  scenario 'a user cannot modify a project is not his'do
-    project = FactoryGirl.create :project, user: user
+  scenario 'a user cannot modify a project is not his' do
+    creator = FactoryGirl.create :user
+    project = FactoryGirl.create :project, user: creator
     login_as user, scope: :user
     visit edit_project_path(project)
     # save_and_open_page
-    expect(page).to have_content 'You are not allow to modify this project.'
+    expect(page).to have_content 'You cannot modify this project'
   end
 
+  scenario 'a user cannot delete a project is not his'
   scenario "created projects can be shared on facebook"
 end
 

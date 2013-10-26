@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :is_creator, only: [:edit, :update, :destroy]
 
   # GET /projects
   # GET /projects.json
@@ -70,5 +72,17 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:title, :short_description, :extended_description, :funding_goal, :funding_duration, :category, :tags)
+    end
+
+    # verify if is user creator
+    def is_creator
+      if @project.user != current_user
+        err_msg = 'You cannot modify this project.'
+        flash[:error] = err_msg
+        respond_to do |format|
+          format.html { redirect_to @project }
+          format.json { render json: err_msg, status: :unprocessable_entity }
+        end
+      end
     end
 end
