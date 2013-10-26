@@ -14,6 +14,7 @@ feature "Creating new projects" do
     # save_and_open_page
     expect(page).to have_content 'Success'
   end
+
   scenario "created projects are displayed in the home page"
   scenario "created projects can be shared on facebook"
 end
