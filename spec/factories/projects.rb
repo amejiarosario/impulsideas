@@ -9,5 +9,6 @@ FactoryGirl.define do
     funding_duration 1
     category "MyString"
     tags "MyString"
+    association :user
   end
 end

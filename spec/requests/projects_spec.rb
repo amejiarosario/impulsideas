@@ -1,7 +1,16 @@
 require 'spec_helper'
 
-feature "Creating new projects" do
-  scenario "it succeed with all the required fields are provided" do
+feature "Projects" do
+  given(:user) { FactoryGirl.create :user }
+
+  scenario 'anonymous users cannot create projects' do
+    visit new_project_path
+    # save_and_open_page
+    expect(page).to have_content 'You need to sign in or sign up before continuing'
+  end
+
+  scenario "it succeed creating project when all the required fields are provided" do
+    login_as user, scope: :user
     visit new_project_path
     fill_in 'Title', with: 'My Project'
     # fill_in :media, with: 'Photo or Video'
@@ -11,11 +20,34 @@ feature "Creating new projects" do
     fill_in 'Funding duration', with: 60
     fill_in 'Tags', with: 'test, capybara'
     click_button 'Create Project'
-    # save_and_open_page
-    expect(page).to have_content 'Success'
+    expect(page).to have_content /success/i
   end
 
-  scenario "created projects are displayed in the home page"
+  scenario "created projects are displayed in the home page" do
+    FactoryGirl.create :project,
+      title: 'The awesome',
+      short_description: 'Back us, this project is awesome'
+    visit root_path
+    expect(page).to have_content 'The awesome'
+    expect(page).to have_content 'Back us, this project is awesome'
+  end
+
+  scenario 'creator can modify the project' do
+    project = FactoryGirl.create :project, user: user
+    visit edit_project_path(project)
+    fill_in 'Short description', with: 'support us!'
+    click_button 'Update Project'
+    expect(page).to have_content 'support us!'
+  end
+
+  scenario 'a user cannot modify a project is not his'do
+    project = FactoryGirl.create :project, user: user
+    login_as user, scope: :user
+    visit edit_project_path(project)
+    # save_and_open_page
+    expect(page).to have_content 'You are not allow to modify this project.'
+  end
+
   scenario "created projects can be shared on facebook"
 end
 
