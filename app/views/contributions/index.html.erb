@@ -1,0 +1,27 @@
+<h1>Listing contributions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contributions.each do |contribution| %>
+      <tr>
+        <td><%= contribution.amount %></td>
+        <td><%= link_to 'Show', [@project, contribution] %></td>
+        <td><%= link_to 'Edit', edit_project_contribution_path(@project, contribution) %></td>
+        <td><%= link_to 'Destroy', [@project, contribution] , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Contribution', new_project_contribution_path(@project) %>

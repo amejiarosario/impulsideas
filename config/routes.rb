@@ -1,5 +1,8 @@
 Impulsideas::Application.routes.draw do
-  resources :projects
+
+  resources :projects do
+    resources :contributions
+  end
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

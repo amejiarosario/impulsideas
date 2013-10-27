@@ -46,7 +46,6 @@ feature "Projects" do
     project = FactoryGirl.create :project, user: creator
     login_as user, scope: :user
     visit edit_project_path(project)
-    # save_and_open_page
     expect(page).to have_content 'You cannot modify this project'
   end
 
@@ -55,6 +54,14 @@ feature "Projects" do
 end
 
 feature "Backers" do
-  scenario "Backers can make donations to a project"
+  given(:user) { FactoryGirl.create :user }
+
+  scenario "Backers can make donations to a project" do
+    project = FactoryGirl.create :project, user: user
+    visit project_path(project)
+    click_link 'Contribute now'
+    save_and_open_page
+  end
+
   scenario "Backers can cancel donations"
 end
