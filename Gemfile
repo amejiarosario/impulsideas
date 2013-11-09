@@ -47,6 +47,7 @@ end
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'simple_form', '>= 3.0.0.rc'
+gem 'paypal-sdk-adaptivepayments'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'

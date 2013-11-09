@@ -1,5 +1,8 @@
 require 'spec_helper'
 
+# FIXME: include bussiness flow...
+# https://developer.paypal.com/webapps/developer/docs/classic/lifecycle/crowdfunding/
+
 feature "Projects" do
   given(:user) { FactoryGirl.create :user }
 
@@ -18,6 +21,11 @@ feature "Projects" do
     fill_in 'Funding goal', with: 930
     fill_in 'Funding duration', with: 60
     fill_in 'Tags', with: 'test, capybara'
+    #
+    # TODO: collects the project owner's PayPal account (Log In with PayPal) 
+    # https://developer.paypal.com/webapps/developer/docs/classic/lifecycle/crowdfunding/
+    # If the platform approves the project, it collects the project owner's PayPal account information through their Log In with PayPal (formerly PayPal Access) account.
+    #
     click_button 'Create Project'
     expect(page).to have_content /success/i
   end
@@ -60,7 +68,10 @@ feature "Backers" do
     project = FactoryGirl.create :project, user: user
     visit project_path(project)
     click_link 'Contribute now'
+    # After agreeing to the payment, the customer is redirected back to the platform and their preapproved amount is added to a running subtotal of the pledge amounts.
+    # redirect to paypal and process payment
     save_and_open_page
+    expect(page).to have_content 'Thanks for your contribution'
   end
 
   scenario "Backers can cancel donations"
