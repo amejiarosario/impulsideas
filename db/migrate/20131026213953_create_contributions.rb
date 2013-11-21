@@ -4,7 +4,7 @@ class CreateContributions < ActiveRecord::Migration
       t.float :amount
       t.integer :project_id
       t.integer :user_id
-      t.integer :payment_status
+      t.string :payment_status, default: 'unprocessed'
 
       t.timestamps
     end

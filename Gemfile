@@ -60,3 +60,5 @@ group :development do
   gem 'guard-rspec', require: false
   gem 'terminal-notifier-guard'
 end
+
+gem 'rails_12factor', group: :production

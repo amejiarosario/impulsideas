@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20131121020303) do
     t.float    "amount"
     t.integer  "project_id"
     t.integer  "user_id"
-    t.integer  "payment_status"
+    t.string   "payment_status", default: "unprocessed"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
