@@ -11,12 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131026213953) do
+ActiveRecord::Schema.define(version: 20131121020303) do
 
   create_table "contributions", force: true do |t|
     t.float    "amount"
     t.integer  "project_id"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payment_notifications", force: true do |t|
+    t.text     "params"
+    t.string   "status"
+    t.string   "transaction_id"
+    t.integer  "contribution_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

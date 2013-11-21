@@ -1,5 +1,7 @@
 Impulsideas::Application.routes.draw do
 
+  resources :payment_notifications
+
   resources :projects do
     resources :contributions
   end
