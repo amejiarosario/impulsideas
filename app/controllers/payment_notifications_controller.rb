@@ -1,4 +1,5 @@
 class PaymentNotificationsController < ApplicationController
+  protect_from_forgery :except => [:create]
   before_action :set_payment_notification, only: [:show, :edit, :update, :destroy]
 
   # GET /payment_notifications
@@ -24,7 +25,14 @@ class PaymentNotificationsController < ApplicationController
   # POST /payment_notifications
   # POST /payment_notifications.json
   def create
-    @payment_notification = PaymentNotification.new(payment_notification_params)
+    logger.info "--- params = #{params.inspect}"
+
+    @payment_notification = PaymentNotification.new(
+      params: params,
+      payment_status: params[:payment_status],
+      transaction_id: params[:txn_id],
+      contribution: Contribution.find(params[:invoice])
+    )
 
     respond_to do |format|
       if @payment_notification.save

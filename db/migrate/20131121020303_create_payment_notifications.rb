@@ -2,7 +2,7 @@ class CreatePaymentNotifications < ActiveRecord::Migration
   def change
     create_table :payment_notifications do |t|
       t.text :params
-      t.string :status
+      t.string :payment_status, default: 'unprocessed'
       t.string :transaction_id
       t.integer :contribution_id
 
