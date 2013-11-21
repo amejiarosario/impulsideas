@@ -3,13 +3,16 @@ development:
   database: impulsideas_development
   pool: 5
   host: localhost
+  password:
 
 test:
   adapter: postgresql
   database: impulsideas_test
   host: localhost
+  password:
 
 production:
   adapter: postgresql
   database: impulsideas_production
   host: localhost
+  password:
