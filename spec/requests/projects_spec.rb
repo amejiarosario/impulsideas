@@ -68,10 +68,12 @@ feature "Backers" do
     project = FactoryGirl.create :project, user: user
     visit project_path(project)
     click_link 'Contribute now'
+    fill_in 'contribution_amount', with: 23
+    click_button 'Create Contribution'
     # After agreeing to the payment, the customer is redirected back to the platform and their preapproved amount is added to a running subtotal of the pledge amounts.
     # redirect to paypal and process payment
-    save_and_open_page
-    expect(page).to have_content 'Thanks for your contribution'
+    # save_and_open_page
+    expect(page).to have_content 'Contribution was successfully'
   end
 
   scenario "Backers can cancel donations"
