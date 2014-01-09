@@ -1,14 +1,37 @@
-<div class="border-form-div">
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { class: 'form-signin mg-btm' }) do |f| %>
+  <h3 class="heading-desc">Ingresar a Impulsideas</h3>
+  <div class="social-box">
+    <div class="row mg-btm">
+      <div class="col-md-12">
+        <a href="#" class="btn btn-primary btn-block"><i class="fa fa-facebook-square"></i> Ingresar con Facebook
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <a href="#" class="btn btn-info btn-block"><i class="fa fa-twitter-square"></i> Ingresar con Twitter
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <span class="clearfix"></span>
+    <input autofocus="autofocus" class="string email optional form-control" id="user_email" name="user[email]" type="email" value="" placeholder="Email"><br>
+    <input class="password optional form-control" id="user_password" name="user[password]" type="password" placeholder="Contraseña">
+    <span class="clearfix"></span>
+  </div>
+  <div class="login-footer">
+    <div class="row">
+      <div class="col-xs-6 col-md-6">
+        <div class="left-section">
+        <%= link_to "Olvido contraseña?", new_password_path(resource_name) %>
+        <%= link_to "Registrate", new_registration_path(resource_name) %>
+        </div>
+      </div>
+      <div class="col-xs-6 col-md-6 pull-right">
+        <button type="submit" class="btn btn-large btn-danger pull-right">Ingresar</button>
+      </div>
+    </div>
 
-  <h2>Sign in</h2>
-
-  <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-    <%= f.input :email, :required => false, :autofocus => true %>
-    <%= f.input :password, :required => false %>
-    <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
-
-    <%= f.button :submit, "Sign in" %>
-  <% end %>
-
-  <%= render "devise/shared/links" %>
-</div>
+  </div>
+<% end %>

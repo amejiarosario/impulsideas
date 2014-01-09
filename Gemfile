@@ -51,6 +51,7 @@ end
 
 gem 'devise'
 gem 'less-rails-bootstrap'
+gem 'font-awesome-rails'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'paypal-sdk-adaptivepayments'
 

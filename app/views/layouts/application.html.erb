@@ -22,22 +22,21 @@
   <body>
     <header>
       <%= render 'layouts/header' %>
-      <%= render 'layouts/carousel' %>
+      <%= yield(:header) if content_for?(:header) %>
     </header>
 
-    <main role="main">
-      <div class="container">
-        <div class="content">
-           <div class="row">
-            <div class="span12">
-              <%= render 'layouts/messages' %>
-              <%= yield %>
-            </div>
-          </div>
-          <footer>
-          </footer>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <%= render 'layouts/messages' %>
+          <%= yield %>
         </div>
       </div>
+
+      <footer>
+        <p class="pull-right"><a href="#">Volver arriba</a></p>
+        <p>&copy; <%= Time.now.year %> Impulsideas, S.R.L.</p>
+      </footer>
     </main>
 
     <%= javascript_include_tag "application" %>
