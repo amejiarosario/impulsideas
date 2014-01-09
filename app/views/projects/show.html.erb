@@ -25,13 +25,16 @@
     <div class="thumbnail">
       <div class="caption">
         <h3>$ 2,349.00 <small>DOP</small></h3>
-        de un total de $<%= @project.funding_goal %>
+        <p>de un total de $<%= @project.funding_goal %></p>
 
         <h3>25 <small>DIAS</small></h3>
-        de un total de <%= @project.funding_duration %> dias
+        <p>de un total de <%= @project.funding_duration %> dias</p>
 
         <h3>7 <small>CONTRIBUYENTES</small></h3>
-        <%= link_to 'Apoyanos!', new_project_contribution_path(@project), class: 'btn btn-primary', role: 'button' %>
+        <p>ver lista de aportes.</p>
+
+        <br>
+        <p><%= link_to 'Apoyanos!', new_project_contribution_path(@project), class: 'btn btn-primary', role: 'button' %></p>
       </div>
     </div>
   </div>

@@ -2,8 +2,10 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :amount %>
+    <%= f.input :amount, label: 'Cantidad', placeholder: 'RD$ 1,000' %>
   </div>
+
+  <br>
 
   <div class="form-actions">
     <%= f.button :submit %>

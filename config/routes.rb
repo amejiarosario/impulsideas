@@ -1,5 +1,8 @@
 Impulsideas::Application.routes.draw do
 
+  get "about/index"
+  get 'about', to: 'about#index'
+
   resources :payment_notifications
 
   resources :projects do
