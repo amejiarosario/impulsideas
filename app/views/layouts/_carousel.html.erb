@@ -13,7 +13,7 @@
           <h1>Sueña</h1>
           <p>Tu tienes metas que mercen ser alcanzadas</p>
           <p>Tu tienes sueños que merecen hacerse realidad</p>
-          <p><a class="btn btn-lg btn-primary" href="#" role="button">Empieza hoy</a></p>
+          <p><%= link_to 'Empieza hoy', new_project_path, class: 'btn btn-lg btn-primary' %></p>
         </div>
       </div>
     </div>
@@ -21,9 +21,9 @@
       <%= image_tag 'crisis.jpg', alt: 'Second Slide' %>
       <div class="container">
         <div class="carousel-caption">
-          <h1>Qué te detine?</h1>
+          <h1>Soporta ideas innovadoras!</h1>
           <p>El 27% de los proyectos emprendidos en la República Dominica fracasan debido a la falta de recursos...</p>
-          <p><a class="btn btn-lg btn-primary" href="#" role="button">Obtén recursos</a></p>
+          <p><%= link_to 'Apoya!', projects_path, class: 'btn btn-lg btn-primary' %></p>
         </div>
       </div>
     </div>

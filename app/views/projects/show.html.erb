@@ -1,40 +1,38 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
+  <div class="col-md-8">
 
-<p>
-  <strong>Short description:</strong>
-  <%= @project.short_description %>
-</p>
+    <div class="jumbotron">
+      <h1><%= @project.title %></h1>
+      <p class="lead"><%= @project.short_description %></p>
 
-<p>
-  <strong>Extended description:</strong>
-  <%= @project.extended_description %>
-</p>
+    </div>
 
-<p>
-  <strong>Funding goal:</strong>
-  <%= @project.funding_goal %>
-</p>
+    <p>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
-<p>
-  <strong>Funding duration:</strong>
-  <%= @project.funding_duration %>
-</p>
+      <iframe src="//www.facebook.com/plugins/like.php?href=<%= URI.encode(request.original_url) %>&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=21&amp;appId=420436051410681" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
+    </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @project.category %>
-</p>
+    <p><%= @project.extended_description %></p>
 
-<p>
-  <strong>Tags:</strong>
-  <%= @project.tags %>
-</p>
+    <%= link_to 'Edit', edit_project_path(@project) %> |
+    <%= link_to 'Back', projects_path %>
+  </div>
 
-<%= link_to 'Contribute now', new_project_contribution_path(@project) %>
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3>$ 2,349.00 <small>DOP</small></h3>
+        de un total de $<%= @project.funding_goal %>
+
+        <h3>25 <small>DIAS</small></h3>
+        de un total de <%= @project.funding_duration %> dias
+
+        <h3>7 <small>CONTRIBUYENTES</small></h3>
+        <%= link_to 'Apoyanos!', new_project_contribution_path(@project), class: 'btn btn-primary', role: 'button' %>
+      </div>
+    </div>
+  </div>
+</div>
