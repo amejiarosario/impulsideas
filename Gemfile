@@ -27,7 +27,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -51,6 +51,7 @@ end
 
 gem 'devise'
 gem 'less-rails-bootstrap'
+gem 'jquery-turbolinks'
 gem 'font-awesome-rails'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'paypal-sdk-adaptivepayments'

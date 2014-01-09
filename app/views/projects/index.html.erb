@@ -4,17 +4,7 @@
 
 <% @projects.each do |project| %>
   <div class="col-sm-6 col-md-4">
-    <div class="thumbnail" id="<%= project.id %>">
-      <!-- <img src="<%#= image %>" alt="project image"> -->
-      <div class="caption">
-        <h3><%= project.title %></h3>
-        <p><%= project.short_description %></p>
-        <p>$ <%= project.funding_goal %> en <%= project.funding_duration %> dias</p>
-
-        <p><%= link_to 'Ver mas', project, class: 'btn btn-default', role: 'button' %>
-        <%= link_to 'Contribuir', new_project_contribution_path(project), class: 'btn btn-primary', role: 'button' %></p>
-      </div>
-    </div>
+    <%= render 'project_thumbnail', project: project %>
   </div>
 <% end %>
 

@@ -1,17 +1,53 @@
-<%= simple_form_for(@project) do |f| %>
-  <%= f.error_notification %>
+<section class="margined">
+  <h1>Crear Proyecto</h1>
 
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :short_description %>
-    <%= f.input :extended_description %>
-    <%= f.input :funding_goal %>
-    <%= f.input :funding_duration %>
-    <%= f.input :category %>
-    <%= f.input :tags %>
-  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <%= simple_form_for(@project) do |f| %>
+        <%= f.error_notification %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+          <div class="form-inputs">
+            <div class="form-group well">
+              <%= f.input :title, label: 'Título', input_html: { class: 'form-control' }, placeholder:
+              'Título del proyecto' %>
+            </div>
+
+            <div class="form-group well">
+              <%= f.input :short_description, label: 'Breve Descripción', input_html: { class:
+              'form-control' }, placeholder:
+              'Atraiga contribuidores a su proyectos en una pocas lineas.' %>
+            </div>
+
+            <div class="form-group well">
+              <%= f.input :funding_goal, label: 'Meta', input_html: { class: 'form-control' },
+              placeholder: 'RD$ 150,000' %>
+            </div>
+
+            <div class="form-group well">
+              <%= f.input :funding_duration, label: 'Duración', input_html: { class:
+              'form-control' }, placeholder: 'Elija duración de 1 a 90 días.' %>
+            </div>
+
+            <div class="form-group well">
+              <%= f.input :extended_description, label: 'Descripción Detallada', input_html: {
+              class: 'form-control' }, placeholder:
+              'Descripción detallada del proyecto: plan de negocios, etapas...' %>
+            </div>
+
+            <%#=f .input :category %>
+            <%#=f .input :tags %>
+          </div>
+
+          <button type="submit" id="submit" class="btn btn-primary">Crear</button>
+          <%=link_to 'Back', projects_path, class: 'btn btn-default' %>
+            <% end %>
+    </div>
+
+    <div class="col-md-4">
+      <h2>Vista Previa</h2>
+      <div id="preview">
+        <%= render 'project_thumbnail', project: Project.new %>
+      </div>
+    </div>
   </div>
-<% end %>
+</section>
