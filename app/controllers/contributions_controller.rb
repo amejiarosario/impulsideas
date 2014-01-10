@@ -26,13 +26,15 @@ class ContributionsController < ApplicationController
   # POST /contributions.json
   def create
     @contribution = @project.contributions.build(contribution_params)
+    @contribution.user = current_user
 
     respond_to do |format|
       if @contribution.save
         # format.html { redirect_to [@project, @contribution], notice: 'Contribution was successfully created.' }
-        format.html { redirect_to @project, notice: 'Contribution was successfully created.' }
+        format.html { redirect_to @project, notice: 'La contribución se realizó satisfactoriamente.' }
         format.json { render action: 'show', status: :created, location: [@project, @contribution] }
       else
+        flash[:error] = @contribution.errors.full_messages
         format.html { render action: 'new' }
         format.json { render json: @contribution.errors, status: :unprocessable_entity }
       end

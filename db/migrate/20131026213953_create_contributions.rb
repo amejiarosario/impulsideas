@@ -5,6 +5,7 @@ class CreateContributions < ActiveRecord::Migration
       t.integer :project_id
       t.integer :user_id
       t.string :payment_status, default: 'unprocessed'
+      t.boolean :anonymous, default: false
 
       t.timestamps
     end

@@ -1,0 +1,16 @@
+<% flash.each do |name, msg| %>
+  <div class="alert alert-<%= name == :notice ? "success" : "danger" %>">
+    <a class="close" data-dismiss="alert">&#215;</a>
+    <% if msg.is_a? String %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% elsif msg.is_a? Array %>
+        <ul>
+          <% msg.each do |m| %>
+            <%= content_tag :li, m, :id => "flash_#{name}" %>
+          <% end %>
+        </ul>
+    <% else %>
+      <%= msg.inspect %>
+    <% end %>
+  </div>
+<% end %>

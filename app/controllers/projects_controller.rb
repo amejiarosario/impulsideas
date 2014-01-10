@@ -27,6 +27,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
+    @project.user = current_user
 
     respond_to do |format|
       if @project.save
@@ -77,7 +78,7 @@ class ProjectsController < ApplicationController
     # verify if is user creator
     def is_creator
       if @project.user != current_user
-        err_msg = 'You cannot modify this project.'
+        err_msg = 'No puedes modificar este proyecto.'
         flash[:error] = err_msg
         respond_to do |format|
           format.html { redirect_to @project }

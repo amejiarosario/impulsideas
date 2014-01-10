@@ -58,6 +58,7 @@ gem 'paypal-sdk-adaptivepayments'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
+  gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'launchy'
@@ -66,6 +67,7 @@ end
 group :development do
   gem 'guard-rspec', require: false
   gem 'terminal-notifier-guard'
+  gem 'quiet_assets'
 end
 
 gem 'rails_12factor', group: :production
