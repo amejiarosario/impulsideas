@@ -39,6 +39,8 @@ class PaymentNotificationsController < ApplicationController
         format.html { redirect_to @payment_notification, notice: 'Payment notification was successfully created.' }
         format.json { head :ok }
       else
+        logger.info "---- #{@payment_notification.errors.full_messages}"
+        flash[:errors] = @payment_notification.errors.full_messages
         format.html { render action: 'new' }
         format.json { render json: @payment_notification.errors, status: :unprocessable_entity }
       end
