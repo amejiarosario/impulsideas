@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :contribution do
     amount 1.5
+    payment_status 'ACTIVE'
     association :user
     association :project
   end
