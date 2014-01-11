@@ -26,13 +26,14 @@ class PaymentNotificationsController < ApplicationController
   # POST /payment_notifications.json
   def create
     hash = YAML.load(params.keys.first)
-    logger.info "++++ #{hash}"
+    logger.info "++++ hash = #{hash}"
+    logger.info "++++ params = #{params}"
 
     @payment_notification = PaymentNotification.new(
       params: params,
       contribution: Contribution.find_by_id(params[:contribution_id]),
-      payment_status: hash["status"],
-      transaction_id: hash["preapproval_key"]
+      payment_status: params["status"] || hash["status"],
+      transaction_id: params["preapproval_key"] || hash["preapproval_key"]
     )
 
     unless @payment_notification.save
