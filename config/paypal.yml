@@ -7,8 +7,10 @@ test: &default
   # Mode can be 'live' or 'sandbox'
   mode: sandbox
 
-  # # Credentials for Classic APIs
+  # Impulsideas SandboxID
   app_id: APP-80W284485P519543T
+
+  # other
   username: jb-us-seller_api1.paypal.com
   password: WX4WTU3S8MY44S7F
   signature: AFcWxV21C7fd0v3bYYYRCpSSRl31A7yDhhsPUU2XhtMoZXsWHFxu-RWy

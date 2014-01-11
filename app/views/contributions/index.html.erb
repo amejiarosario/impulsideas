@@ -1,10 +1,11 @@
-<h1>Listing contributions</h1>
+<h1>Lista contribuciones para <%= @project.title %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Amount</th>
-      <th></th>
+      <th>Aporte</th>
+      <th>Usuario</th>
+      <th>Fecha</th>
       <th></th>
       <th></th>
     </tr>
@@ -13,10 +14,12 @@
   <tbody>
     <% @contributions.each do |contribution| %>
       <tr>
-        <td><%= contribution.amount %></td>
-        <td><%= link_to 'Show', [@project, contribution] %></td>
-        <td><%= link_to 'Edit', edit_project_contribution_path(@project, contribution) %></td>
-        <td><%= link_to 'Destroy', [@project, contribution] , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= number_to_currency(contribution.amount) %></td>
+        <td><%= contribution.user.email %></td>
+        <td><%= contribution.updated_at.strftime('%b/%d - %l:%M %p') %></td>
+        <td><%#= link_to 'Show', [@project, contribution] %></td>
+        <td><%#= link_to 'Edit', edit_project_contribution_path(@project, contribution) %></td>
+        <td><%#= link_to 'Destroy', [@project, contribution] , method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

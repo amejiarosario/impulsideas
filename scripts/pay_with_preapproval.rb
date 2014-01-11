@@ -6,7 +6,7 @@ PayPal::SDK.load("config/paypal.yml", "test")
 
 @api = PayPal::SDK::AdaptivePayments::API.new
 
-APPROVAL_KEY = 'PA-36M768801J859553F'
+APPROVAL_KEY = 'PA-36M768801J859553F' # paste preapproval key
 
 # Build request object
 @pay = @api.build_pay({

@@ -25,19 +25,19 @@ class PaymentNotificationsController < ApplicationController
   # POST /payment_notifications
   # POST /payment_notifications.json
   def create
-    logger.info "--- params = #{params.inspect}"
+    hash = YAML.load(params.keys.first)
 
     @payment_notification = PaymentNotification.new(
       params: params,
-      payment_status: params[:payment_status],
-      transaction_id: params[:txn_id],
-      contribution: Contribution.find(params[:invoice])
+      contribution: Contribution.find_by_id(params[:contribution_id]),
+      payment_status: hash["status"],
+      transaction_id: hash["preapproval_key"]
     )
 
     respond_to do |format|
       if @payment_notification.save
         format.html { redirect_to @payment_notification, notice: 'Payment notification was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @payment_notification }
+        format.json { head :ok }
       else
         format.html { render action: 'new' }
         format.json { render json: @payment_notification.errors, status: :unprocessable_entity }

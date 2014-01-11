@@ -10,7 +10,7 @@ PayPal::SDK.load("config/paypal.yml", "test")
 @preapproval = @api.build_preapproval({
   :cancelUrl => "https://paypal-sdk-samples.herokuapp.com/adaptive_payments/preapproval",
   :currencyCode => "USD",
-  :endingDate => 1.year.from_now.localtime,
+  :endingDate => 180.days.from_now.localtime,
   :maxAmountPerPayment => 1000.0,
   :maxNumberOfPayments => 1,
   :maxNumberOfPaymentsPerPeriod => 1,
@@ -37,5 +37,6 @@ else
 end
 
 puts "\r\nhttps://www.sandbox.paypal.com/webscr?cmd=_ap-preapproval&preapprovalkey=#{@preapproval_response.preapprovalKey}"
+
 
 

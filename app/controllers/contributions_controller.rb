@@ -1,4 +1,5 @@
 class ContributionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_project
   before_action :set_contribution, only: [:show, :edit, :update, :destroy]
 
@@ -28,17 +29,19 @@ class ContributionsController < ApplicationController
     @contribution = @project.contributions.build(contribution_params)
     @contribution.user = current_user
 
-    respond_to do |format|
+    # respond_to do |format|
       if @contribution.save
+        redirect_to @contribution.paypal_url
         # format.html { redirect_to [@project, @contribution], notice: 'Contribution was successfully created.' }
-        format.html { redirect_to @project, notice: 'La contribución se realizó satisfactoriamente.' }
-        format.json { render action: 'show', status: :created, location: [@project, @contribution] }
+        # format.html { redirect_to @project, notice: 'La contribución se realizó satisfactoriamente.' }
+        # format.json { render action: 'show', status: :created, location: [@project, @contribution] }
       else
         flash[:error] = @contribution.errors.full_messages
-        format.html { render action: 'new' }
-        format.json { render json: @contribution.errors, status: :unprocessable_entity }
+        render action: 'new'
+        # format.html { render action: 'new' }
+        # format.json { render json: @contribution.errors, status: :unprocessable_entity }
       end
-    end
+    # end
   end
 
   # PATCH/PUT /contributions/1

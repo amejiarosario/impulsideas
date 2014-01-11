@@ -20,14 +20,14 @@ ActiveRecord::Schema.define(version: 20131121020303) do
     t.float    "amount"
     t.integer  "project_id"
     t.integer  "user_id"
-    t.string   "payment_status", default: "unprocessed"
+    t.string   "payment_status", default: "UNPROCESSED"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "payment_notifications", force: true do |t|
     t.text     "params"
-    t.string   "payment_status",  default: "unprocessed"
+    t.string   "payment_status",  default: "UNPROCESSED"
     t.string   "transaction_id"
     t.integer  "contribution_id"
     t.datetime "created_at"

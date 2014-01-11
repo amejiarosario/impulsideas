@@ -3,5 +3,7 @@
 FactoryGirl.define do
   factory :contribution do
     amount 1.5
+    association :user
+    association :project
   end
 end

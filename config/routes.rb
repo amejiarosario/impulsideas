@@ -4,6 +4,7 @@ Impulsideas::Application.routes.draw do
   get 'about', to: 'about#index'
 
   resources :payment_notifications
+  post 'ipn_notifications/:contribution_id', to: 'payment_notifications#create', as: 'ipn_notifications'
 
   resources :projects do
     resources :contributions
