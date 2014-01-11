@@ -9,7 +9,7 @@ describe Project do
 
   context '.funding_percentage' do
     it 'should have zero when no contribution' do
-      project.funding_percentage.should be 0
+      project.funding_percentage.should be 0.0
     end
 
     it 'should calculate percentage when contributions' do

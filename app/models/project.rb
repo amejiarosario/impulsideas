@@ -25,6 +25,7 @@ class Project < ActiveRecord::Base
   end
 
   def funding_percentage
-    ((total_contributed.to_f/funding_goal.to_f) * 100)
+    return 0.0 unless funding_goal.to_f > 0
+    ((total_contributed.to_f / funding_goal.to_f) * 100)
   end
 end
