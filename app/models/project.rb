@@ -13,4 +13,12 @@ class Project < ActiveRecord::Base
   def total_contributors
    contributions.where(payment_status: 'ACTIVE').select('DISTINCT(user_id)').count
   end
+
+  def time_left
+    funding_duration - ((Time.now - created_at)/1.day).round
+  end
+
+  def funding_percentage
+    ((total_contributed.to_f/funding_goal.to_f) * 100)
+  end
 end

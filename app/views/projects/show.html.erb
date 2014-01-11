@@ -26,7 +26,7 @@
         <h3><%= number_to_currency(@project.total_contributed || 0) %> <small>DOP</small></h3>
         <p>de un total de <%= number_to_currency(@project.funding_goal) %></p>
 
-        <h3><%= @project.funding_duration - ((Time.now - @project.created_at)/1.day).round %> <small>DIAS</small></h3>
+        <h3><%= @project.time_left %> <small>DIAS</small></h3>
         <p>de un total de <%= @project.funding_duration %> dias</p>
 
         <h3><%= @project.total_contributors %> <small>CONTRIBUYENTES</small></h3>
