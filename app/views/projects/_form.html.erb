@@ -8,8 +8,7 @@
 
           <div class="form-inputs">
             <div class="form-group well">
-              <%= f.input :title, label: 'Título', input_html: { class: 'form-control' }, placeholder:
-              'Título del proyecto' %>
+              <%= f.input :title, label: 'Título', input_html: { class: 'form-control' }, placeholder: 'Título del proyecto' %>
             </div>
 
             <div class="form-group well">
@@ -48,8 +47,8 @@
             <%#=f .input :tags %>
           </div>
 
-          <button type="submit" id="submit" class="btn btn-primary">Crear</button>
-          <%=link_to 'Atrás', projects_path, class: 'btn btn-default' %>
+          <button type="submit" id="submit" class="btn btn-primary">Salvar</button>
+          <%=link_to 'Atrás', projects_path, class: 'btn btn-danger' %>
             <% end %>
     </div>
 

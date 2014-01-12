@@ -8,7 +8,7 @@ feature "Signing in" do
   scenario "Signing in with correct credentials" do
     visit '/users/sign_in'
     fill_in 'Email', :with => 'user@example.com'
-    fill_in 'Password', :with => 'caplin2013'
+    fill_in 'Contraseña', :with => 'caplin2013'
     click_button 'Sign in'
     expect(page).to have_content 'success'
   end

@@ -14,19 +14,18 @@ feature "Projects" do
   scenario "it succeed creating project when all the required fields are provided" do
     login_as user, scope: :user
     visit new_project_path
-    fill_in 'Title', with: 'My Project'
+    fill_in 'Título', with: 'My Project'
     # fill_in :media, with: 'Photo or Video'
-    fill_in 'Short description', with: 'This is my project and support me'
-    fill_in 'Extended description', with: 'Bla bla bla'
-    fill_in 'Funding goal', with: 930
-    fill_in 'Funding duration', with: 60
-    fill_in 'Tags', with: 'test, capybara'
+    fill_in 'Descripción Detallada', with: 'Bla bla bla'*33
+    fill_in 'Meta', with: 930
+    fill_in 'Duración', with: 60
+    # fill_in 'Tags', with: 'test, capybara'
     #
-    # TODO: collects the project owner's PayPal account (Log In with PayPal) 
+    # TODO: collects the project owner's PayPal account (Log In with PayPal)
     # https://developer.paypal.com/webapps/developer/docs/classic/lifecycle/crowdfunding/
     # If the platform approves the project, it collects the project owner's PayPal account information through their Log In with PayPal (formerly PayPal Access) account.
     #
-    click_button 'Create Project'
+    click_button 'Salvar'
     expect(page).to have_content /success/i
   end
 
@@ -44,7 +43,7 @@ feature "Projects" do
     project = FactoryGirl.create :project, user: creator
     login_as creator, scope: :user
     visit edit_project_path(project)
-    fill_in 'Short description', with: 'support us!'
+    fill_in 'Descripción Detallada', with: 'support us! '*50
     click_button 'Update Project'
     expect(page).to have_content 'support us!'
   end

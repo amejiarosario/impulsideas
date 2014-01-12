@@ -25,34 +25,18 @@ class PaymentNotificationsController < ApplicationController
   # POST /payment_notifications
   # POST /payment_notifications.json
   def create
-    hash = YAML.load(params.keys.first)
-    logger.info "++++ hash = #{hash}"
-    logger.info "++++ params = #{params}"
-
     @payment_notification = PaymentNotification.new(
       params: params,
       contribution: Contribution.find_by_id(params[:contribution_id]),
-      payment_status: params["status"] || hash["status"],
-      transaction_id: params["preapproval_key"] || hash["preapproval_key"]
+      payment_status: params["status"],
+      transaction_id: params["preapproval_key"]
     )
 
     unless @payment_notification.save
-      logger.info "---- #{@payment_notification.errors.full_messages}"
+      logger.info "IPN ERRORS: #{@payment_notification.errors.full_messages}"
     end
 
     render nothing: true
-
-    # respond_to do |format|
-    #   if @payment_notification.save
-    #     format.html { redirect_to @payment_notification, notice: 'Payment notification was successfully created.' }
-    #     format.json { head :ok }
-    #   else
-    #     logger.info "---- #{@payment_notification.errors.full_messages}"
-    #     flash[:errors] = @payment_notification.errors.full_messages
-    #     format.html { render action: 'new' }
-    #     format.json { render json: @payment_notification.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # PATCH/PUT /payment_notifications/1
