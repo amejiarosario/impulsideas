@@ -55,6 +55,7 @@ gem 'jquery-turbolinks'
 gem 'font-awesome-rails'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'paypal-sdk-adaptivepayments'
+gem 'video_info'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'

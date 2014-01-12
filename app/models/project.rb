@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
   belongs_to :user
   has_many :contributions, dependent: :destroy
+  after_save :get_video_info
 
   validates :title, presence: true
   validates :short_description, presence: true, length: { minimum: 2 }
@@ -29,5 +30,12 @@ class Project < ActiveRecord::Base
   def funding_percentage
     return 0.0 unless funding_goal.to_f > 0
     ((total_contributed.to_f / funding_goal.to_f) * 100)
+  end
+
+  def get_video_info
+    if self.media_link.present?
+      video = VideoInfo.get self.media_link
+      self.update_columns(media_meta: video.to_yaml)
+    end
   end
 end

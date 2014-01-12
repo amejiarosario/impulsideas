@@ -13,6 +13,11 @@
             </div>
 
             <div class="form-group well">
+              <%= f.input :media_link, label: 'Link video (youtube, vimeo o vk)', input_html: { class: 'form-control' }, placeholder:
+              'http://www.youtube.com/watch?v=EDUpiVwi6lw' %>
+            </div>
+
+            <div class="form-group well">
               <%= f.input :short_description, label: 'Breve Descripción', input_html: { class:
               'form-control' }, placeholder:
               'Atraiga contribuidores a su proyectos en una pocas lineas.' %>
@@ -32,6 +37,11 @@
               <%= f.input :extended_description, label: 'Descripción Detallada', input_html: {
               class: 'form-control' }, placeholder:
               'Descripción detallada del proyecto: plan de negocios, etapas...' %>
+            </div>
+
+            <div class="form-group well">
+              <%= f.input :project_url, label: 'URL del Proyecto', input_html: { class: 'form-control' }, placeholder:
+              'http://www.su-proyecto.com' %>
             </div>
 
             <%#=f .input :category %>
