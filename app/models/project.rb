@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
   has_many :contributions, dependent: :destroy
 
+  validates :title, presence: true
   validates :short_description, presence: true, length: { minimum: 2 }
   validates :funding_goal, presence: true, numericality: { greater_than: 0 }
   validates :funding_duration, presence: true, numericality: {greater_than: 0, less_than: 91}
@@ -21,6 +22,7 @@ class Project < ActiveRecord::Base
   end
 
   def time_left
+    return 0 unless created_at
     funding_duration - ((Time.now - created_at)/1.day).round
   end
 

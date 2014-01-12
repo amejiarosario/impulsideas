@@ -255,7 +255,7 @@ Response:
 
 IPN
 
- curl -XPOST http://0.0.0.0:3000/payment_notifications -d '{
+ curl -XPOST http://0.0.0.0:3000/ipn_notifications/4 -d '{
   "max_number_of_payments" : "1",
   "starting_date" : "2014-01-10T19:03:37.000-07:00",
   "pin_type" : "NOT_REQUIRED",

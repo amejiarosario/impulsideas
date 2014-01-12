@@ -1,17 +1,35 @@
+<% breakpoint = !project.new_record? #(project.funding_percentage.round > 50) %>
 <div id="project_thumbnail">
   <div class="thumbnail" id="<%= project.id %>">
     <!-- <img src="<%#= image %>" alt="project image"> -->
     <div class="caption">
       <h3 id="title"><%= project.title %></h3>
       <p id="description"><%= project.short_description %></p>
-      <p><span id="goal"><%= number_to_currency(project.funding_goal) %></span> en <span id="duration"><%= project.funding_duration %></span> dias</p>
+
+      <hr>
 
       <div class="progress progress-striped active">
         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= project.funding_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= project.funding_percentage %>%">
           <span class="sr-only"><%= project.funding_percentage %>% Complete (success)</span>
         </div>
-        <p class="pull-right"><%= project.funding_percentage.round %>%</p>
+        <p>
+          <% unless breakpoint %>
+            <span><%= number_to_currency(project.total_contributed) %></span>
+          <% end %>
+          <span class="pull-right"><%= project.funding_percentage.round %>%</span>
+        </p>
       </div>
+
+      <p>
+        <% if breakpoint %>
+          <strong id="goal"><%= number_to_currency(project.total_contributed) %></strong> recolectados
+          <i class="fa fa-clock-o"></i> <strong id="duration"><%= project.time_left %></strong> días restantes.
+        <% else %>
+          Meta <strong id="goal"><%= number_to_currency(project.funding_goal) %></strong>
+          en
+          <i class="fa fa-clock-o"></i> <strong id="duration"><%= project.funding_duration %></strong> días.
+        <% end %>
+      </p><br>
 
       <% unless project.new_record? %>
         <p><%= link_to 'Ver mas', project, class: 'btn btn-default', role: 'button' %>
