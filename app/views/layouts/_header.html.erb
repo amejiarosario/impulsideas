@@ -16,9 +16,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><%= link_to 'Explora', projects_path %></li>
-            <li><%= link_to 'Crea', new_project_path %></li>
-            <li><%= link_to 'Conoce', about_index_path %></li>
+            <li class="<%= current_page?(projects_path) ? 'active' : '' %>"><%= link_to 'Explora', projects_path %></li>
+            <li class="<%= current_page?(new_project_path) ? 'active' : '' %>"><%= link_to 'Crea', new_project_path %></li>
+            <li class="<%= current_page?(about_path) ? 'active' : '' %>"><%= link_to 'Conoce', about_path %></li>
             <% if user_signed_in? %>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-no-turbolink="true"><%= current_user.email %><b class="caret"></b></a>
