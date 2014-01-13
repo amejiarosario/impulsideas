@@ -3,9 +3,11 @@
       <% if project.new_record?  %>
         <%= image_tag 'http://placehold.it/300x200', alt: 'placeholder', class: 'img-responsive' %>
       <% else %>
-        <!-- 'repdom.jpg' -->
-        <% if project.media_meta.present? %>
-          <%= image_tag YAML.load(project.media_meta).thumbnail_large, class: 'img-responsive'  %>
+        <%
+          media_meta = YAML.load(project.media_meta) rescue nil
+          if media_meta.respond_to?(:thumbnail_large)
+        %>
+          <%= image_tag media_meta.thumbnail_large, class: 'img-responsive'  %>
         <% end %>
       <% end %>
     <div class="caption">
