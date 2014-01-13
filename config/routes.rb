@@ -1,6 +1,7 @@
 Impulsideas::Application.routes.draw do
 
   get "about/index"
+  get "about/main"
   get 'about', to: 'about#index', as: 'about'
 
   resources :payment_notifications
@@ -15,7 +16,7 @@ Impulsideas::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'projects#index'
+  root 'about#main'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

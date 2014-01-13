@@ -1,13 +1,6 @@
-<% content_for :header do %>
-  <% render 'layouts/carousel' %>
-<% end %>
-
+<h1>Proyectos</h1>
 <% @projects.each do |project| %>
   <div class="col-sm-6 col-md-4">
     <%= render 'project_thumbnail', project: project %>
   </div>
 <% end %>
-
-<br>
-
-<%#= link_to 'New Project', new_project_path %>
