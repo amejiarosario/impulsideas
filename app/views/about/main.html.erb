@@ -4,9 +4,9 @@
 
 <h3>Proyectos destacados</h3><%= link_to 'Ver todos', projects_path, class: 'btn btn-default' %>
 
-<div>
-  <% Project.all[0..2].each do |project| %>
-    <div class="col-sm-6 col-md-4">
+<div id="projects_container">
+  <% Project.all[0..2].each.each do |project| %>
+    <div class="col-sm-6 col-md-4 project_item">
       <%= render 'projects/project_thumbnail', project: project %>
     </div>
   <% end %>

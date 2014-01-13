@@ -1,6 +1,8 @@
 <h1>Proyectos</h1>
-<% @projects.each do |project| %>
-  <div class="col-sm-6 col-md-4">
-    <%= render 'project_thumbnail', project: project %>
-  </div>
-<% end %>
+<div id="projects_container">
+  <% @projects.each do |project| %>
+    <div class="col-sm-6 col-md-4 project_item">
+      <%= render 'project_thumbnail', project: project %>
+    </div>
+  <% end %>
+</div>
