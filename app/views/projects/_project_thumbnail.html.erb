@@ -8,7 +8,9 @@
           media_meta = YAML.load(project.media_meta) rescue nil
           if media_meta.respond_to?(:thumbnail_large)
         %>
-          <%= image_tag media_meta.thumbnail_large, class: 'img-responsive'  %>
+          <%= link_to project, role: 'button' do %>
+            <%= image_tag media_meta.thumbnail_large, class: 'img-responsive'  %>
+          <% end %>
         <% end %>
       <% end %>
     <div class="caption">
