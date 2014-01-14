@@ -56,6 +56,9 @@ gem 'font-awesome-rails'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'paypal-sdk-adaptivepayments'
 gem 'video_info'
+gem 'redactor-rails'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'

@@ -36,6 +36,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (0.9.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     coderay (1.1.0)
@@ -106,6 +110,8 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25.1)
+    mini_magick (3.7.0)
+      subexec (~> 0.2.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
     multi_json (1.8.2)
@@ -152,6 +158,10 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    redactor-rails (0.4.3)
+      devise
+      mime-types
+      orm_adapter
     ref (1.0.5)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
@@ -192,6 +202,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    subexec (0.2.3)
     terminal-notifier-guard (1.5.3)
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
@@ -224,6 +235,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  carrierwave
   coffee-rails (~> 4.0.0)
   devise
   factory_girl_rails
@@ -235,11 +247,13 @@ DEPENDENCIES
   launchy
   less-rails
   less-rails-bootstrap
+  mini_magick
   paypal-sdk-adaptivepayments
   pg
   quiet_assets
   rails (= 4.0.0)
   rails_12factor
+  redactor-rails
   rspec-rails (~> 2.0)
   sass-rails (~> 4.0.0)
   sdoc

@@ -3,8 +3,8 @@
   <div class="col-md-8">
 
     <div class="jumbotron">
-      <h1><%= @project.title %></h1>
-      <p class="lead"><%= truncate(@project.extended_description, length: 100) %></p>
+      <h1><%= @project.title %><small>por <%= @project.user.username %></small></h1>
+      <p class="lead"><%= @project.short_description %></p>
       <%
         media_meta = YAML.load(@project.media_meta) rescue nil
         if media_meta.respond_to?(:embed_code)
@@ -12,6 +12,13 @@
         <div class="video-container">
           <%=raw media_meta.embed_code %>
         </div>
+      <% end %>
+
+      <br>
+
+      <% unless @project.project_url.blank? %>
+        <dt>Pagina del Proyecto:</dt>
+        <dd><%= link_to @project.project_url, @project.project_url, id: 'project_url', target: '_blank' %></dd>
       <% end %>
     </div>
 
@@ -21,10 +28,14 @@
       <iframe src="//www.facebook.com/plugins/like.php?href=<%= URI.encode(request.original_url) %>&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=21&amp;appId=420436051410681" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
     </p>
 
-    <p><%= @project.extended_description %></p>
+    <p><%=raw @project.extended_description %></p>
 
-<!--     <%#= link_to 'Editar', edit_project_path(@project) %> |
-    <%#= link_to 'Atrás', projects_path %> -->
+    <% if @creator %>
+      <hr>
+      <%= link_to 'Editar', edit_project_path(@project), class: 'btn btn-primary' %>
+      <%= link_to 'Eliminar', project_path(@project), class: 'btn btn-danger', method: :delete, data: { confirm: 'Está seguro que quiere eliminar este proyecto?' }  %>
+      <%= link_to 'Atrás', projects_path, class: 'btn btn-default' %>
+    <% end %>
   </div>
 
   <div class="col-md-4">

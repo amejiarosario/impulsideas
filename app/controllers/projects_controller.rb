@@ -1,7 +1,8 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :is_creator, only: [:edit, :update, :destroy]
+  before_action :check_can_edit, only: [:edit, :update, :destroy]
+  before_action :set_creator, only: [:show]
 
   # GET /projects
   # GET /projects.json
@@ -70,6 +71,10 @@ class ProjectsController < ApplicationController
       @project = Project.find(params[:id])
     end
 
+    def set_creator
+      @creator = creator?
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:title, :short_description,
@@ -78,9 +83,13 @@ class ProjectsController < ApplicationController
                                       :media_link, :project_url)
     end
 
+    def creator?
+      @project.user == current_user
+    end
+
     # verify if is user creator
-    def is_creator
-      if @project.user != current_user
+    def check_can_edit
+      if !creator?
         err_msg = 'No puedes modificar este proyecto.'
         flash[:error] = err_msg
         respond_to do |format|

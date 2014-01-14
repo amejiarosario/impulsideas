@@ -1,4 +1,4 @@
-<% user = (project.user || current_user).email.gsub(/@.*$/, '') rescue 'anonimo' %>
+<% user = (project.user || current_user).username rescue 'anonimo' %>
 <div id="project_thumbnail">
   <div class="thumbnail" id="<%= project.id %>">
       <% if project.new_record?  %>
@@ -15,7 +15,7 @@
       <% end %>
     <div class="caption">
       <h3><span id="title"><%= project.title %></span> <small>por <%= user %></small></h3>
-      <p id="description"><%= truncate(project.extended_description, length: 100) %></p>
+      <p id="description"><%= truncate(project.short_description, length: 100) %></p>
 
       <hr>
 

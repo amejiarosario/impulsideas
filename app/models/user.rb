@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :projects
   has_many :contributions
+
+  def username
+    self.email.gsub(/@.*$/, '')
+  end
 end

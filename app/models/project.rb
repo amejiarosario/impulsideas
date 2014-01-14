@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
   after_save :get_video_info
 
   validates :title, presence: true
+  validates :short_description, presence: true, length: { minimum: 5 }
   validates :extended_description, presence: true, length: { minimum: 100 }
   validates :funding_goal, presence: true, numericality: { greater_than: 0 }
   validates :funding_duration, presence: true, numericality: {greater_than: 0, less_than: 91}
@@ -24,7 +25,8 @@ class Project < ActiveRecord::Base
 
   def time_left
     return 0 unless created_at
-    funding_duration - ((Time.now - created_at)/1.day).round
+    left = funding_duration - ((Time.now - created_at)/1.day).round
+    left > 0 ? left : 0
   end
 
   def funding_percentage

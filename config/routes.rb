@@ -1,5 +1,6 @@
 Impulsideas::Application.routes.draw do
 
+  mount RedactorRails::Engine => '/redactor_rails'
   get "about/index"
   get "about/main"
   get 'about', to: 'about#index', as: 'about'
