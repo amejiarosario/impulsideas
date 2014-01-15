@@ -43,6 +43,7 @@
     </main>
 
     <%= javascript_include_tag "application" %>
+    <%= analytics_init if Rails.env.production? %>
 
     <script>
       $.getScript('//cdn.jsdelivr.net/isotope/1.5.25/jquery.isotope.min.js',function(){

@@ -59,6 +59,8 @@ gem 'video_info'
 gem 'redactor-rails'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'google-analytics-rails'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
