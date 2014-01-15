@@ -21,3 +21,10 @@ main.container,
 footer#footer {
   margin-top: 100px;
 }
+
+@font-face {
+  font-family: 'LeagueGothic';
+  src: font_path('LeagueGothic-Regular.otf');
+  font-weight: normal;
+  font-style: normal;
+}

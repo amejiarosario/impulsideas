@@ -3,7 +3,7 @@
   <div class="col-md-8">
 
     <div class="jumbotron">
-      <h1><%= @project.title %><small>por <%= @project.user.username %></small></h1>
+      <h1><%= @project.title %> <small>por <%= @project.user.username %></small></h1>
       <p class="lead"><%= @project.short_description %></p>
       <%
         media_meta = YAML.load(@project.media_meta) rescue nil

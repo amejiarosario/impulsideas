@@ -13,7 +13,6 @@
         <div class="carousel-caption">
           <h1>Sueña</h1>
           <p>Tu tienes metas que mercen ser alcanzadas,<br> Tu tienes sueños que merecen hacerse realidad</p>
-          <p><%= link_to 'Empieza hoy', new_project_path, class: 'btn btn-lg btn-primary' %></p>
         </div>
       </div>
     </div>
@@ -23,8 +22,9 @@
       <div class="container">
         <div class="carousel-caption">
           <h1>Soporta ideas innovadoras!</h1>
-          <p>El 27% de los proyectos emprendidos en la República Dominica fracasan debido a la falta de recursos...</p>
-          <p><%= link_to 'Apoya!', projects_path, class: 'btn btn-lg btn-primary' %></p>
+          <p>Más del 50% de los proyectos emprendidos en la República Dominica fracasan debido a la falta de recursos...</p>
+          <%= link_to 'Apoya!', projects_path, class: 'btn btn-lg btn-primary' %>
+          <p></p>
         </div>
       </div>
     </div>
@@ -34,6 +34,9 @@
       <div class="container">
         <div class="carousel-caption">
           <h1>Consigue todo el apoyo que necesitas</h1>
+          <p>Publica tu proyecto con nosotros y comienza a hacerlo realidad</p>
+          <%= link_to 'Crea', new_project_path, class: 'btn btn-lg btn-primary' %>
+          <p></p>
         </div>
       </div>
     </div>
