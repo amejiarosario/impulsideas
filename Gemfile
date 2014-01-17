@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.0.0"
+ruby "2.1.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
@@ -60,7 +60,7 @@ gem 'redactor-rails'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'google-analytics-rails'
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', '1.4.0'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'

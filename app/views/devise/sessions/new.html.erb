@@ -4,16 +4,19 @@
   <div class="social-box">
     <div class="row mg-btm">
       <div class="col-md-12">
-        <a href="#" class="btn btn-primary btn-block"><i class="fa fa-facebook-square"></i> Ingresar con Facebook
-        </a>
+<!--         <a href="#" class="btn btn-primary btn-block"><i class="fa fa-facebook-square"></i> Facebook
+        </a> -->
+        <%= link_to user_omniauth_authorize_path(:facebook), class: 'btn btn-primary btn-block' do %>
+          <i class="fa fa-facebook-square"></i> Facebook
+        <% end %>
       </div>
     </div>
-    <div class="row">
+<!--     <div class="row">
       <div class="col-md-12">
         <a href="#" class="btn btn-info btn-block"><i class="fa fa-twitter-square"></i> Ingresar con Twitter
         </a>
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="main">
     <span class="clearfix"></span>
