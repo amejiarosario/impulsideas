@@ -137,6 +137,7 @@ GEM
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.7.0)
+    newrelic_rpm (3.7.1.188)
     nokogiri (1.5.11)
     oauth2 (0.8.1)
       faraday (~> 0.8)
@@ -287,6 +288,7 @@ DEPENDENCIES
   less-rails
   less-rails-bootstrap
   mini_magick
+  newrelic_rpm
   omniauth-facebook (= 1.4.0)
   paypal-sdk-adaptivepayments
   pg

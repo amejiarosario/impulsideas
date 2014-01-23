@@ -62,6 +62,7 @@ gem 'fog', '~> 1.3.1'
 gem 'mini_magick'
 gem 'google-analytics-rails'
 gem 'omniauth-facebook', '1.4.0'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
