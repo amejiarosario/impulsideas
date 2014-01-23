@@ -7,8 +7,6 @@ class User < ActiveRecord::Base
   has_many :projects, dependent: :destroy
   has_many :contributions
 
-  validates :provider, uniqueness: true
-
   validates :password, :confirmation => true,
             :length => {:within => 6..40},
             :allow_blank => true,
@@ -23,8 +21,8 @@ class User < ActiveRecord::Base
            where(auth.slice(:provider, :uid)).first_or_initialize
 
     user.tap do |u|
-      u.provider = auth.provider if u.provider.blank?
-      u.uid = auth.uid if u.uid.blank?
+      u.provider = auth.provider
+      u.uid = auth.uid
       u.email = auth.info.email if u.email.blank?
       u.password = Devise.friendly_token[0,20] if u.encrypted_password.blank?
       u.name = auth.info.name if u.name.blank?
