@@ -58,11 +58,12 @@ gem 'paypal-sdk-adaptivepayments'
 gem 'video_info'
 gem 'redactor-rails'
 gem 'carrierwave'
-gem 'fog', '~> 1.3.1'
+gem 'fog'
 gem 'mini_magick'
 gem 'google-analytics-rails'
 gem 'omniauth-facebook', '1.4.0'
 gem 'newrelic_rpm'
+gem 'passenger'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
