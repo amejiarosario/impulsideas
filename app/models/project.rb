@@ -8,6 +8,8 @@ class Project < ActiveRecord::Base
   validates :extended_description, presence: true, length: { minimum: 100 }
   validates :funding_goal, presence: true, numericality: { greater_than: 0 }
   validates :funding_duration, presence: true, numericality: {greater_than: 0, less_than: 91}
+  validates :media_link, presence: true, :format => URI::regexp(%w(http https))
+  validates :project_url, :allow_blank => true, :format => URI::regexp(%w(http https))
 
   def total_contributed
     Contribution
