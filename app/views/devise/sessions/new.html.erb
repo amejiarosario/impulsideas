@@ -1,24 +1,12 @@
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { class: 'form-signin mg-btm' }) do |f| %>
   <h3 class="heading-desc">Ingresar a <%= image_tag 'logo.png', height: '30px' %></h3>
+
   <br>
-  <div class="social-box">
-    <div class="row mg-btm">
-      <div class="col-md-12">
-<!--         <a href="#" class="btn btn-primary btn-block"><i class="fa fa-facebook-square"></i> Facebook
-        </a> -->
-        <%= link_to user_omniauth_authorize_path(:facebook), class: 'btn btn-primary btn-block' do %>
-          <i class="fa fa-facebook-square"></i> Facebook
-        <% end %>
-      </div>
-    </div>
-<!--     <div class="row">
-      <div class="col-md-12">
-        <a href="#" class="btn btn-info btn-block"><i class="fa fa-twitter-square"></i> Ingresar con Twitter
-        </a>
-      </div>
-    </div> -->
-  </div>
+  <%= render 'devise/shared/social_links', prefix: 'Ingresar con' %>
+  <hr>
+
   <div class="main">
+    <h4>Ingresar con Email</h4>
     <span class="clearfix"></span>
     <input autofocus="autofocus" class="string email optional form-control" id="user_email" name="user[email]" type="email" value="" placeholder="Email"><br>
     <input class="password optional form-control" id="user_password" name="user[password]" type="password" placeholder="Contraseña">
