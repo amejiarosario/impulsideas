@@ -7,6 +7,13 @@ class User < ActiveRecord::Base
   has_many :projects, dependent: :destroy
   has_many :contributions
 
+  validates :provider, uniqueness: true
+
+  validates :password, :confirmation => true,
+            :length => {:within => 6..40},
+            :allow_blank => true,
+            :on => :update
+
   def emailname
     self.name || self.username || self.email.gsub(/@.*$/, '')
   end
@@ -19,11 +26,10 @@ class User < ActiveRecord::Base
       u.provider = auth.provider if u.provider.blank?
       u.uid = auth.uid if u.uid.blank?
       u.email = auth.info.email if u.email.blank?
-      u.password = Devise.friendly_token[0,20] if u.password.blank?
+      u.password = Devise.friendly_token[0,20] if u.encrypted_password.blank?
       u.name = auth.info.name if u.name.blank?
       u.image = auth.info.image if u.image.blank?
       u.raw_info = auth.to_yaml
-      u.save!
     end
   end
 

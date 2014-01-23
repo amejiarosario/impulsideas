@@ -12,7 +12,8 @@ Impulsideas::Application.routes.draw do
     resources :contributions
   end
 
-  devise_for :users, controllers: { :omniauth_callbacks => "users/omniauth_callbacks", :registration => "registration" }
+  devise_for :users, controllers: { :omniauth_callbacks => "users/omniauth_callbacks",
+                                    :registrations => "registrations"  }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
