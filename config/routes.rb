@@ -1,8 +1,10 @@
 Impulsideas::Application.routes.draw do
 
+  get "about/faq"
   mount RedactorRails::Engine => '/redactor_rails'
   get "about/index"
   get "about/main"
+  get "about/terms"
   get 'about', to: 'about#index', as: 'about'
 
   resources :payment_notifications

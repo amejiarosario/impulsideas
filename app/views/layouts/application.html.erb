@@ -35,12 +35,26 @@
         </div>
       </div>
 
-      <footer id="footer">
+<!--       <footer id="footer">
         <hr>
         <p class="pull-right"><a href="#">Volver arriba</a></p>
-        <p>&copy; <%= Time.now.year %> GAPEK, S.R.L.</p>
-      </footer>
+        <p>&copy; <%#= Time.now.year %> GAPEK, S.R.L.</p>
+      </footer> -->
     </main>
+      <footer id="footer">
+          <div class="container">
+
+              <ul class="list-inline">
+                  <li> <%= link_to "Principal", root_path %> </li>
+                  <li> <%= link_to "Condiciones de Uso", about_terms_path %> </li>
+                  <li> <%= link_to "Preguntas Frecuentas", about_faq_path %> </li>
+<!--                   <li><a href="#">Our Blog</a></li>
+                  <li><a href="#">Contact Us</a></li>
+ -->              </ul>
+              <p class="text-muted credit">© <%= Time.now.year %>  <strong>GAPEK, SRL</strong>
+              </p>
+          </div>
+      </footer>
 
     <%= javascript_include_tag "application" %>
     <%= analytics_init if Rails.env.production? %>

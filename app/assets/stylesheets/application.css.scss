@@ -22,6 +22,14 @@ footer#footer {
   margin-top: 100px;
 }
 
+#footer {
+  text-align: center;
+  padding: 2em;
+  background-color: white;
+  border-top: 2px solid #F0F0F0;
+}
+#footer p {font-size: 12px;}
+
 @font-face {
   font-family: 'LeagueGothic';
   src: font_path('LeagueGothic-Regular.otf');
@@ -34,4 +42,15 @@ footer#footer {
   margin: 0 9px;
   border-left: 1px solid #f2f2f2;
   border-right: 1px solid #ffffff;
+}
+
+// FAQ
+
+ul.faq {
+  li {
+    list-style: none;
+  }
+  .answer {
+    display: none;
+  }
 }

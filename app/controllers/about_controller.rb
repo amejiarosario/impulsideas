@@ -1,7 +1,7 @@
 class AboutController < ApplicationController
-  def index
+  def terms
   end
 
-  def main
+  def faq
   end
 end
