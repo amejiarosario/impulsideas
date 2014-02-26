@@ -64,6 +64,7 @@ gem 'google-analytics-rails'
 gem 'omniauth-facebook', '1.4.0'
 gem 'newrelic_rpm'
 gem 'passenger'
+gem 'geocoder'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'

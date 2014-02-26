@@ -2,6 +2,7 @@ class ContributionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_project
   before_action :set_contribution, only: [:show, :edit, :update, :destroy]
+  before_action :check_country, only: [:new, :create]
 
   # GET /contributions
   # GET /contributions.json
@@ -82,5 +83,15 @@ class ContributionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def contribution_params
       params.require(:contribution).permit(:amount)
+    end
+
+    def check_country
+      results = Geocoder.search request.remote_ip
+      logger.info "INFO: request.remote_ip = #{request.remote_ip}, GEO= #{results.inspect}, FORBIDDEN_COUNTRIES=#{Contribution::FORBIDDEN_COUNTRIES}"
+      return true unless results
+      if results.any?{|result| Contribution::FORBIDDEN_COUNTRIES.include?(result.data["country_code"]) }
+        flash[:error] = "Lo sentimos, su pais no esta permitido todavía."
+        redirect_to @project
+      end
     end
 end

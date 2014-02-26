@@ -1,6 +1,8 @@
 class Contribution < ActiveRecord::Base
   include Rails.application.routes.url_helpers
 
+  FORBIDDEN_COUNTRIES = %w|IN TW MY SG|
+
   belongs_to :project
   belongs_to :user
   has_many :payment_notifications, dependent: :destroy
