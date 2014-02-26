@@ -84,14 +84,4 @@ class ContributionsController < ApplicationController
     def contribution_params
       params.require(:contribution).permit(:amount)
     end
-
-    def check_country
-      results = Geocoder.search request.remote_ip
-      logger.info "INFO: request.remote_ip = #{request.remote_ip}, GEO= #{results.inspect}, FORBIDDEN_COUNTRIES=#{Contribution::FORBIDDEN_COUNTRIES}"
-      return true unless results
-      if results.any?{|result| Contribution::FORBIDDEN_COUNTRIES.include?(result.data["country_code"]) }
-        flash[:error] = "Lo sentimos, su pais no esta permitido todavía."
-        redirect_to @project
-      end
-    end
 end

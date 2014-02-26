@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
             :allow_blank => true,
             :on => :update
 
+  FORBIDDEN_COUNTRIES = %w|IN TW MY SG|
+
   def emailname
     self.name || self.username || self.email.gsub(/@.*$/, '')
   end
