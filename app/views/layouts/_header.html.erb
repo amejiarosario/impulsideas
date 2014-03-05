@@ -11,33 +11,49 @@
             <span class="icon-bar"></span>
           </button>
           <%= link_to root_path, :class => 'navbar-brand' do %>
+            <%= image_tag 'logo-bombillo.png', height: '20px' %>
             <%= image_tag 'logo.png', height: '20px' %>
           <% end %>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="<%= current_page?(projects_path) ? 'active' : '' %>"><%= link_to 'Explora', projects_path %></li>
-            <li class="<%= current_page?(new_project_path) ? 'active' : '' %>"><%= link_to 'Crea', new_project_path %></li>
+            <li class="<%= current_page?(projects_path) ? 'active' : '' %>"><%= link_to projects_path do %>
+                <span class="fa fa-search"></span> Explora
+              <% end %></li>
+            <li class="<%= current_page?(new_project_path) ? 'active' : '' %>">
+              <%= link_to new_project_path do %>
+                <span class="fa fa-cog"></span> Crea
+              <% end %>
+            </li>
             <!-- <li class="<%#= current_page?(about_path) ? 'active' : '' %>"><%#= link_to 'Conoce', about_path %></li> -->
             <% if user_signed_in? %>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-no-turbolink="true"><%= current_user.emailname %><b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-no-turbolink="true"><span class="fa fa-user"></span> <%= current_user.emailname %><b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to 'Editar cuenta', edit_user_registration_path %>
+                  <li><%= link_to edit_user_registration_path do %>
+                    <span class="fa fa-edit"></span> Editar cuenta
+                  <% end %>
                   </li>
                   <li class="divider"></li>
-                  <li><%= link_to 'Salir', destroy_user_session_path, :method=>'delete' %>
+                  <li><%= link_to destroy_user_session_path, :method=>'delete' do %>
+                    <span class="fa fa-sign-out"></span> Salir
+                  <% end %>
                   </li>
                 </ul>
               </li>
             <% else %>
-              <li><%= link_to 'Ingresar', new_user_session_path %></li>
-              <li><%= link_to 'Registrarse', new_user_registration_path  %></li>
+              <li><%= link_to new_user_session_path do %>
+                <span class="fa fa-sign-in"> Ingresar
+              <% end %>
+              </li>
+              <li><%= link_to new_user_registration_path do %>
+                <span class="fa fa-cloud-upload"></span> Registrarse
+              <% end %>
+              </li>
             <% end %>
           </ul>
         </div>
       </div>
     </div>
-
   </div>
 </div>

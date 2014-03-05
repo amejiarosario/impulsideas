@@ -27,34 +27,36 @@
       <%= yield(:header) if content_for?(:header) %>
     </header>
 
-    <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <%= render 'layouts/flash' %>
-          <%= yield %>
-        </div>
+    <!-- <div id="sub-header"></div> tilde.io-->
+
+    <% if current_page? root_path %>
+              <%= render 'layouts/flash' %>
+              <%= yield %>
+    <% else %>
+        <!-- <div id="main-wrapper"> -->
+          <main role="main" class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <%= render 'layouts/flash' %>
+                <%= yield %>
+              </div>
+            </div>
+          </main>
+        <!-- </div> -->
+    <% end %>
+
+    <footer id="footer">
+      <div class="container">
+          <ul class="list-inline">
+            <li> <%= link_to "Principal", root_path %> </li>
+            <li> <%= link_to "Condiciones de Uso", about_terms_path %> </li>
+            <li> <%= link_to "Preguntas Frecuentes", about_faq_path %> </li>
+            <!--<li><a href="#">Our Blog</a></li><li><a href="#">Contact Us</a></li>-->
+          </ul>
+        <p class="text-muted credit">© <%= Time.now.year %>  <strong>GAPEK, SRL</strong> · Created by <strong><a href="http://adrianmejia.com" style="color: inherit; text-decoration: inherit;">Adrian Mejia</a></strong></p>
+        <p class="text-muted credit"></p>
       </div>
-
-<!--       <footer id="footer">
-        <hr>
-        <p class="pull-right"><a href="#">Volver arriba</a></p>
-        <p>&copy; <%#= Time.now.year %> GAPEK, S.R.L.</p>
-      </footer> -->
-    </main>
-      <footer id="footer">
-          <div class="container">
-
-              <ul class="list-inline">
-                  <li> <%= link_to "Principal", root_path %> </li>
-                  <li> <%= link_to "Condiciones de Uso", about_terms_path %> </li>
-                  <li> <%= link_to "Preguntas Frecuentes", about_faq_path %> </li>
-<!--                   <li><a href="#">Our Blog</a></li>
-                  <li><a href="#">Contact Us</a></li>
- -->              </ul>
-              <p class="text-muted credit">© <%= Time.now.year %>  <strong>GAPEK, SRL</strong>
-              </p>
-          </div>
-      </footer>
+    </footer>
 
     <%= javascript_include_tag "application" %>
     <%= analytics_init if Rails.env.production? %>

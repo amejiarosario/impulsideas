@@ -8,33 +8,34 @@
   <div class="carousel-inner">
 
     <div class="item active">
-      <%= image_tag 'sueno.jpg', alt: 'First Slide', class: 'img-responsive' %>
+      <%= image_tag 'goal.jpg', alt: 'First Slide', class: 'img-responsive' %>
       <div class="container">
         <div class="carousel-caption">
           <h1>Sueña</h1>
-          <p>Tu tienes metas que mercen ser alcanzadas,<br> Tu tienes sueños que merecen hacerse realidad</p>
+          <p>Tu tienes metas que mercen ser alcanzadas,<br>Tu tienes sueños que merecen hacerse realidad.</p>
+          <%= link_to 'Empieza', projects_path, class: 'btn btn-lg btn-primary' %>
         </div>
       </div>
     </div>
 
     <div class="item">
-      <%= image_tag 'repdom2.jpg', alt: 'Second Slide', class: 'img-responsive' %>
+      <%= image_tag 'blueprint.jpg', alt: 'Second Slide', class: 'img-responsive' %>
       <div class="container">
         <div class="carousel-caption">
-          <h1>Soporta ideas innovadoras!</h1>
-          <p>Más del 50% de los proyectos emprendidos en la República Dominica fracasan debido a la falta de recursos...</p>
-          <%= link_to 'Apoya!', projects_path, class: 'btn btn-lg btn-primary' %>
+          <h1>Soporta ideas!</h1>
+          <p>Gran número de proyectos emprendidos fracasan debido a la falta de recursos. Puedes cambiar eso hoy.</p>
+          <%= link_to 'Apoya', projects_path, class: 'btn btn-lg btn-primary' %>
           <p></p>
         </div>
       </div>
     </div>
 
     <div class="item">
-      <%= image_tag 'faroles.jpg', alt: 'Third Slide', class: 'img-responsive' %>
+      <%= image_tag 'support2.jpg', alt: 'Third Slide', class: 'img-responsive' %>
       <div class="container">
         <div class="carousel-caption">
-          <h1>Consigue todo el apoyo que necesitas</h1>
-          <p>Publica tu proyecto con nosotros y comienza a hacerlo realidad</p>
+          <h1>Consigue Apoyo</h1>
+          <p>Publica tu proyecto con nosotros y estas a otro paso de hacerlo realidad.</p>
           <%= link_to 'Crea', new_project_path, class: 'btn btn-lg btn-primary' %>
           <p></p>
         </div>

@@ -17,7 +17,15 @@
 
 /* User sign in and sign forms. */
 
-main.container,
+$blue: #1791f5;
+$green: #8dd600;
+$grey: #edf3f3;
+
+main.container {
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
 footer#footer {
   margin-top: 100px;
 }
@@ -25,10 +33,14 @@ footer#footer {
 #footer {
   text-align: center;
   padding: 2em;
-  background-color: white;
+  background-color: $grey;
   border-top: 2px solid #F0F0F0;
+  margin-bottom: -100px;
 }
-#footer p {font-size: 12px;}
+
+#footer p {
+  font-size: 12px;
+}
 
 @font-face {
   font-family: 'LeagueGothic';
@@ -53,4 +65,46 @@ ul.faq {
   .answer {
     display: none;
   }
+}
+
+.container .row {
+  .title {
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: -20px;
+    a {
+      color: $blue;
+      text-decoration: none;
+    }
+  }
+}
+
+// General
+
+#main-wrapper {
+  background: $grey;
+}
+
+// #sub-header {
+//   position: relative;
+//   width: 100%;
+//   height: 7px;
+//   background: transparent image_url('grey-triangle-border.png');
+// }
+
+.marketing {
+  .pbox {
+    padding-top: 70px;
+  }
+  .big-icon {
+    font-size: 100px;
+  }
+  span:hover {
+    color: $blue;
+  }
+  background: white;
+}
+
+body {
+  // background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(217, 217, 217, 0)), color-stop(50%, rgba(217, 217, 217, 1)), color-stop(100%, rgba(217, 217, 217, 0)));
 }

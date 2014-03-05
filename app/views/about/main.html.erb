@@ -2,7 +2,11 @@
   <% render 'layouts/carousel' %>
 <% end %>
 
-<h3>Proyectos destacados</h3><%= link_to 'Ver todos', projects_path, class: 'btn btn-default' %>
+        <div id="main-wrapper">
+          <main role="main" class="container">
+            <div class="row">
+              <div class="col-md-12">
+<h3 class="title"><%= link_to 'Proyectos destacados', projects_path %></h3>
 
 <div id="projects_container">
   <% Project.find(:all, :order => "id desc", :limit => 3).each do |project| %>
@@ -10,10 +14,16 @@
       <%= render 'projects/project_thumbnail', project: project %>
     </div>
   <% end %>
-</div>
+</div>              </div>
+            </div>
+          </main>
+        </div>
+
+
+
 
 <div class="clearfix"></div>
-<hr>
+<!-- <hr> -->
 
 <!-- Marketing messaging and featurettes
 ================================================== -->
@@ -23,25 +33,31 @@
 
   <!-- Three columns of text below the carousel -->
   <div class="row">
-    <div class="col-lg-4">
-      <%= image_tag 'crea.png', height: '130px' %>
+    <div class="col-lg-4 pbox">
+      <!-- <%#= image_tag 'crea.png', height: '130px' %> -->
+      <!-- <span class="glyphicon glyphicon-cog" style="font-size:100px"></span> -->
+      <span class="fa fa-cogs big-icon"></span>
       <h2>Crea proyecto</h2>
-      <p>Crea tu proyecto con nosotros cualquiera que sea. Un gimnasio electronico, una casa inteligente, una investigación académica, un cortometraje, un videojuego, un jardín para la comunidad... </p>
-      <p><a class="btn btn-default" href="<%= projects_path %>" role="button">Inspírate &raquo;</a></p>
+      <p>Crea tu proyecto con nosotros cualquiera que sea. El proyectos es 100% tuyo. No tienes nada que perder y muchos sueños que alcanzar. </p>
+      <p><a class="btn btn-primary" href="<%= projects_path %>" role="button">Inspírate &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
-    <div class="col-lg-4">
-      <%= image_tag 'difunde.png', height: '130px' %>
+    <div class="col-lg-4 pbox">
+      <%#= image_tag 'difunde.png', height: '130px' %>
+      <!-- <span class="glyphicon glyphicon-globe" style="font-size:100px"></span> -->
+      <span class="fa fa-bullhorn big-icon"></span>
       <h2>Promocionalo</h2>
-      <p>Creas un video, lo compartes por facebook, lo publicas en twitter, le envias fotos a tus seguidores en instagram, lo envias por correo electronico, lo muestras en tu comunidad, en tu trabajo, en tu universidad.</p>
-      <p><a class="btn btn-default" href="<%= new_project_path %>" role="button">Comienza &raquo;</a></p>
+      <p>Dile a las personas que esta haciendo. Creas un video y comparte tu proyectos en tus redes sociales favoritas.</p>
+      <p><a class="btn btn-primary" href="<%= new_project_path %>" role="button">Comienza &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
-    <div class="col-lg-4">
-      <%= image_tag 'dinero.png', class: 'img-circle', height: '130px' %>
+    <div class="col-lg-4 pbox">
+      <!-- <%#= image_tag 'dinero.png', class: 'img-circle', height: '130px' %> -->
+      <span class="fa fa-money big-icon"></span>
       <h2>Recibe fondos</h2>
-      <p>Las metas son sueños con tiempos de cumplimiento. Recibe tu fondos al cumpliento del plazo del proyecto y haz tus sueños realidad</p>
-      <p><a class="btn btn-default" href="<%= new_project_path %>" role="button">Gana &raquo;</a></p>
+      <p>Todos tienen igual de oportunidades de levantar fondos. Recibe tus dinero al cumpliento del plazo de tiempo y comienza a hacer tus sueños realidad.</p>
+      <p><a class="btn btn-primary" href="<%= new_project_path %>" role="button">Gana &raquo;</a></p>
     </div><!-- /.col-lg-4 -->
   </div><!-- /.row -->
+</div>
 
 
   <!-- START THE FEATURETTES -->
@@ -83,5 +99,5 @@
   </div> -->
 
   <!-- <hr class="featurette-divider"> -->
-<div>
+<!-- <div> -->
   <!-- /END THE FEATURETTES -->

@@ -51,7 +51,7 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     commonjs (0.2.7)
-    daemon_controller (1.1.8)
+    daemon_controller (1.2.0)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -158,7 +158,7 @@ GEM
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     orm_adapter (0.5.0)
-    passenger (4.0.35)
+    passenger (4.0.37)
       daemon_controller (>= 1.1.0)
       rack
       rake (>= 0.8.1)
