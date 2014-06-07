@@ -2,22 +2,28 @@
   <% render 'layouts/carousel' %>
 <% end %>
 
-        <div id="main-wrapper">
-          <main role="main" class="container">
-            <div class="row">
-              <div class="col-md-12">
-<h3 class="title"><%= link_to 'Proyectos destacados', projects_path %></h3>
-
-<div id="projects_container">
-  <% Project.find(:all, :order => "id desc", :limit => 3).each do |project| %>
-    <div class="col-sm-6 col-md-4 project_item">
-      <%= render 'projects/project_thumbnail', project: project %>
+<div id="main-wrapper">
+  <main role="main" class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="title"><%= link_to 'Proyectos destacados', projects_path %></h3>
+        <% projects = Project.find(:all, :order => "id desc", :limit => 3) %>
+        <% if projects.any? %>
+          <div id="projects_container">
+            <% projects.each do |project| %>
+              <div class="col-sm-6 col-md-4 project_item">
+                <%= render 'projects/project_thumbnail', project: project %>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <br><br>
+          <p>No hay projectos para mostrar. Crear uno nuevo <%= link_to "aqui.", new_project_path %></p>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-</div>              </div>
-            </div>
-          </main>
-        </div>
+  </main>
+</div>
 
 
 

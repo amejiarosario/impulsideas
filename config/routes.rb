@@ -1,5 +1,7 @@
 Impulsideas::Application.routes.draw do
 
+  resources :items
+
   get "about/faq"
   mount RedactorRails::Engine => '/redactor_rails'
   get "about/index"

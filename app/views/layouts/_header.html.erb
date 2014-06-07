@@ -17,9 +17,14 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
+            <li class="<%= current_page?(items_path) ? 'active' : '' %>"><%= link_to items_path do %>
+                <span class="fa fa-globe"></span> Marketplace
+              <% end %>
+            </li>
             <li class="<%= current_page?(projects_path) ? 'active' : '' %>"><%= link_to projects_path do %>
                 <span class="fa fa-search"></span> Explora
-              <% end %></li>
+              <% end %>
+            </li>
             <li class="<%= current_page?(new_project_path) ? 'active' : '' %>">
               <%= link_to new_project_path do %>
                 <span class="fa fa-cog"></span> Crea
