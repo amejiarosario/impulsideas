@@ -1,6 +1,9 @@
 Impulsideas::Application.routes.draw do
 
+  get "contact_form/new"
+  get "contact_form/create"
   resources :items
+  resources :contact_forms, only: :create
 
   get "about/faq"
   mount RedactorRails::Engine => '/redactor_rails'
