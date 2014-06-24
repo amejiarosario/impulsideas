@@ -1,8 +1,12 @@
 class ContactFormController < ApplicationController
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
+
   # POST /users
   # POST /users.json
   def create
-    @user = ContactForm.new(params[:user])
+    raise params[:contact_form].inspect
+    
+    @user = ContactForm.new(params[:contact_form])
  
     respond_to do |format|
       if @user.valid?
