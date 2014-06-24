@@ -4,4 +4,8 @@ class AboutController < ApplicationController
 
   def faq
   end
+
+  def landing
+    render layout: false
+  end
 end
