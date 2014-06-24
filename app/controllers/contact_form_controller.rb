@@ -12,7 +12,7 @@ class ContactFormController < ApplicationController
         ContactFormMailer.notification_email(@user).deliver
  
         format.html { redirect_to(@user, notice: 'Email was successfully sent.') }
-        format.json { render json: @user, status: :created, location: @user }
+        format.json { redirect_to :back rescue render nothing: true }
       else
         format.html { render action: 'new' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
