@@ -4,8 +4,6 @@ class ContactFormController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    raise params[:contact_form].inspect
-    
     @user = ContactForm.new(params[:contact_form])
  
     respond_to do |format|
