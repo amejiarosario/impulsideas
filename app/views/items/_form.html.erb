@@ -1,15 +1,50 @@
-<%= simple_form_for(@item) do |f| %>
-  <%= f.error_notification %>
+<section class="margined">
+  <h1>Producto</h1>
 
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :price %>
-    <%= f.input :stock %>
-    <%= f.association :user %>
-  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <%= simple_form_for(@item) do |f| %>
+        <%= f.error_notification %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+          <div class="form-inputs">
+            <div class="form-group well">
+              <%= f.input :title, label: 'Título', input_html: { class: 'form-control' }, placeholder: 'Título del producto' %>
+            </div>
+
+            <!-- <div class="form-group well"> -->
+              <%#= f.input :media_link, label: 'Link video (youtube o vimeo)', input_html: { class: 'form-control' }, placeholder:
+              'http://www.youtube.com/watch?v=EDUpiVwi6lw' %>
+            <!-- </div> -->
+
+            <div class="form-group well">
+              <%= f.input :description, label: 'Breve Descripción', input_html: { class: 'form-control' }, placeholder: 'Atraiga contribuidores a su proyectos en una pocas lineas.' %>
+            </div>
+
+            <div class="form-group well">
+              <%= f.input :price, label: 'Precio', input_html: { class: 'form-control' },
+              placeholder: 'RD$ 100' %>
+            </div>
+
+            <div class="form-group well">
+              <%= f.input :stock, label: 'Cantidad de productos', input_html: { class:
+              'form-control' }, placeholder: 'Cantidad de productos que dispone para vender' %>
+            </div>
+
+            <%#=f .input :category %>
+            <%#=f .input :tags %>
+          </div>
+
+          <button type="submit" id="submit" class="btn btn-primary">Salvar</button>
+          <%=link_to 'Atrás', projects_path, class: 'btn btn-danger' %>
+            <% end %>
+    </div>
+
+<!--     <div class="col-md-4">
+      <h2>Vista Previa</h2>
+      <div id="preview">
+        <%#= render 'item_thumbnail', item: Item.new %>
+      </div>
+    </div> -->
   </div>
-<% end %>
+</section>
+

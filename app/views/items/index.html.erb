@@ -1,35 +1,15 @@
-<h1>Listing items</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Stock</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<h3 class="title">Productos</h3>
+<% if @items.any? %>
+  <div id="projects_container">
     <% @items.each do |item| %>
-      <tr>
-        <td><%= item.title %></td>
-        <td><%= item.description %></td>
-        <td><%= item.price %></td>
-        <td><%= item.stock %></td>
-        <td><%= item.user %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="col-sm-6 col-md-4 project_item">
+        <%= render 'item_thumbnail', item: item %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
-
-<%= link_to 'New Item', new_item_path %>
+  <%= link_to 'Crear producto', new_item_path %>
+<% else %>
+  <br><br>
+  <p>No hay productos para mostrar. Crea uno nuevo <%= link_to "aqui.", new_item_path %> </p>
+<% end %>
