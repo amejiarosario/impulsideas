@@ -34,8 +34,8 @@
       <hr>
       <%= link_to 'Editar', edit_project_path(@project), class: 'btn btn-primary' %>
       <%= link_to 'Eliminar', project_path(@project), class: 'btn btn-danger', method: :delete, data: { confirm: 'Está seguro que quiere eliminar este proyecto?' }  %>
-      <%= link_to 'Atrás', projects_path, class: 'btn btn-default' %>
     <% end %>
+    <%= link_to 'Ver todos', projects_path, class: 'btn btn-default' %>
   </div>
 
   <div class="col-md-4">

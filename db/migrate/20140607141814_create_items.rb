@@ -6,6 +6,7 @@ class CreateItems < ActiveRecord::Migration
       t.decimal :price
       t.integer :stock
       t.references :user, index: true
+      t.references :project, index: true
 
       t.timestamps
     end

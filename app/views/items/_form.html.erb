@@ -30,6 +30,11 @@
               'form-control' }, placeholder: 'Cantidad de productos que dispone para vender' %>
             </div>
 
+            <div class="form-group well">
+              <%= f.association :project, label: 'Proyecto Asociado', input_html: { class:
+              'form-control' } %>
+            </div>
+
             <%#=f .input :category %>
             <%#=f .input :tags %>
           </div>
