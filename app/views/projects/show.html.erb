@@ -30,6 +30,17 @@
 
     <p><%=raw @project.extended_description %></p>
 
+    <% if @project.items.any? %>
+      <p>
+        <h3>Productos soportando este projecto</h3>
+        <ul>
+          <% @project.items.each do |item| %>
+            <li><%= link_to item.title, item %></li>
+          <% end %>
+        </ul>
+      </p>
+    <% end %>
+
     <% if @creator %>
       <hr>
       <%= link_to 'Editar', edit_project_path(@project), class: 'btn btn-primary' %>

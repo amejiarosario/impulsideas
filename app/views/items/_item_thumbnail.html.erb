@@ -1,6 +1,8 @@
 <div id="project_thumbnail">
   <div class="thumbnail" id="<%= item.id %>">
-    <%= image_tag 'http://placehold.it/300x200', alt: 'placeholder', class: 'img-responsive' %>
+    <%= link_to item do %>
+      <%= image_tag 'http://placehold.it/300x200', alt: 'placeholder', class: 'img-responsive' %>
+    <% end %>
 
     <div class="caption">
       <h3><span id="title"><%= item.title %></span></h3>
