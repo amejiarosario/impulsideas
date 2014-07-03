@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20140607141814) do
 
   create_table "items", force: true do |t|
     t.string   "title"
+    t.string   "picture"
     t.text     "description"
     t.decimal  "price"
     t.integer  "stock"
