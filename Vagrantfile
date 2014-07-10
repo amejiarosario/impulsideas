@@ -31,6 +31,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "vim"
     chef.add_recipe "postgresql::server"
     chef.add_recipe "postgresql::client"
+    chef.add_recipe "imagemagick::devel"
 
     # Install Ruby 2.1.2 and Bundler
     # Set an empty root password for MySQL to make things simple
