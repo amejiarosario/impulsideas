@@ -30,17 +30,6 @@
 
     <p><%=raw @project.extended_description %></p>
 
-    <% if @project.items.any? %>
-      <p>
-        <h3>Productos soportando este projecto</h3>
-        <ul>
-          <% @project.items.each do |item| %>
-            <li><%= link_to item.title, item %></li>
-          <% end %>
-        </ul>
-      </p>
-    <% end %>
-
     <% if @creator %>
       <hr>
       <%= link_to 'Editar', edit_project_path(@project), class: 'btn btn-primary' %>
@@ -65,5 +54,24 @@
         <p><%= link_to 'Contribuye!', new_project_contribution_path(@project), class: 'btn btn-success', role: 'button' %></p>
       </div>
     </div>
+    <% if @project.items.any? %>
+      <div class="thumbnail">
+        <div class="caption">
+            <p>
+              <h3>Productos soportando este projecto</h3>
+              <!-- <ul> -->
+                <% @project.items.each do |item| %>
+                  <!-- <li> -->
+                    <%= link_to item do %>
+                      <%= image_tag item.picture_url, alt: item.title, class: 'img-responsive' %> <%= item.title %>
+                    <% end %>
+                  <!-- </li> -->
+                  <br>
+                <% end %>
+              <!-- </ul> -->
+            </p>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
