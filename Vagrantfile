@@ -12,6 +12,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--memory", "2048"]
   end
 
+  config.ssh.forward_agent = true
+
   # Forward the Rails server default port to the host
   config.vm.network :forwarded_port, guest: 3000, host: 4000
 
@@ -21,7 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Use Chef Solo to provision our virtual machine
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = ["cookbooks", "site-cookbooks"]
+    chef.cookbooks_path = "cookbooks"
 
     chef.add_recipe "apt"
     chef.add_recipe "nodejs"
