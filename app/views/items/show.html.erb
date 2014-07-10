@@ -8,7 +8,7 @@
       <h1><%= @item.title %> <!-- <small>por <%#= @item.user.emailname %></small> --></h1>
       <p class="lead"><%= @item.description %></p>
 
-      <%= image_tag 'http://placehold.it/300x200', alt: 'placeholder', class: 'img-responsive' %>
+      <%= image_tag @item.picture_url, alt: @item.name, class: 'img-responsive' %>
       <%
         #media_meta = YAML.load(@item.media_meta) rescue nil
         if false #if media_meta.respond_to?(:embed_code)
