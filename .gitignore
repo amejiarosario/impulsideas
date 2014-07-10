@@ -18,3 +18,5 @@
 public/system/redactor_assets
 .env
 public/uploads/*
+cookbooks/
+.vagrant/
