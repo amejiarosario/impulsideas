@@ -3,15 +3,18 @@ SITE
   specs:
     apt (2.4.0)
     build-essential (2.0.4)
-    mysql (5.3.6)
-      yum-mysql-community (>= 0.0.0)
+    chef-sugar (2.0.0)
+    openssl (2.0.0)
+      chef-sugar (>= 0.0.0)
+    postgresql (3.4.1)
+      apt (>= 1.9.0)
+      build-essential (>= 0.0.0)
+      openssl (>= 0.0.0)
     ruby_build (0.8.0)
     vim (1.1.2)
     yum (3.2.2)
     yum-epel (0.3.6)
       yum (~> 3.0)
-    yum-mysql-community (0.1.8)
-      yum (>= 3.0.0)
 
 GIT
   remote: https://github.com/fnichol/chef-rbenv
@@ -33,8 +36,8 @@ GIT
 DEPENDENCIES
   apt (>= 0)
   build-essential (>= 0)
-  mysql (>= 0)
   nodejs (>= 0)
+  postgresql (>= 0)
   rbenv (>= 0)
   ruby_build (>= 0)
   vim (>= 0)

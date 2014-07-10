@@ -29,9 +29,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "rbenv::user"
     chef.add_recipe "rbenv::vagrant"
     chef.add_recipe "vim"
-    chef.add_recipe "mysql::server"
-    chef.add_recipe "mysql::client"
     chef.add_recipe "postgresql::server"
+    chef.add_recipe "postgresql::client"
 
     # Install Ruby 2.1.2 and Bundler
     # Set an empty root password for MySQL to make things simple
@@ -48,14 +47,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           }
         }]
       },
-      mysql: {
-        server_root_password: ''
-      },
       postgresql: {
-        config: {
-          ssl: false,
-          listen_addresses: '*'
-        }
+        password: {
+          postgres: "password"
+        },
+        pg_hba: [
+          { type: 'local', db: 'all', user: 'all', addr: nil, method: 'trust' },
+          { type: 'local', db: 'all', user: 'postgres', addr: nil, method: 'trust' },
+          { type: 'host', db: 'all', user: 'all', addr: '127.0.0.1/32', method: 'trust' }
+        ]
       }
     }
   end
