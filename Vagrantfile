@@ -1,6 +1,13 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+$script = <<SCRIPT
+
+# Ubuntu: Curl development headers with SSL support
+sudo apt-get install -y libcurl4-openssl-dev nginx
+
+SCRIPT
+
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -20,6 +27,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # NFS Sync
   config.vm.synced_folder '.', '/vagrant', type: 'nfs'
   config.vm.network 'private_network', ip: '192.168.50.4' # ensure this is available
+
+  config.vm.provision "shell", inline: $script
 
   # Use Chef Solo to provision our virtual machine
   config.vm.provision :chef_solo do |chef|
