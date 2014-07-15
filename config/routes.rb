@@ -6,6 +6,7 @@ Impulsideas::Application.routes.draw do
   resources :contact_form, only: :create
 
   get "about/faq"
+  get "about/faq_en"
   mount RedactorRails::Engine => '/redactor_rails'
   get "about/index"
   get "about/main"

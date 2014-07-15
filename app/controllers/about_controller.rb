@@ -5,6 +5,9 @@ class AboutController < ApplicationController
   def faq
   end
 
+  def faq_en
+  end
+
   def landing
     render layout: false
   end
