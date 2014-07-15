@@ -19,7 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--memory", "2048"]
   end
 
-  # ssh-add ~/.ssh/id_rsa
+  # ssh-add -K ~/.ssh/id_rsa
   config.ssh.forward_agent = true
 
   # Forward the Rails server default port to the host
