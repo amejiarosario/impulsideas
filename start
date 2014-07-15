@@ -1,0 +1,4 @@
+#!/usr/bin/env
+
+#start
+vagrant up && vagrant ssh
