@@ -75,6 +75,7 @@ faq = {
     <div class="page-header">
       <h1>FAQs</h1>
     </div>
+    <p><%= link_to "Español", about_faq_path %></p>
     <% faq.each do |header, questions| %>
       <h3><%= header.to_s.titleize %></h3>
       <ul class="faq">

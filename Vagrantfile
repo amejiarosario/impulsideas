@@ -4,7 +4,12 @@
 $script = <<SCRIPT
 
 # Ubuntu: Curl development headers with SSL support
-sudo apt-get install -y libcurl4-openssl-dev
+sudo apt-get install -y libcurl4-openssl-dev curl zsh
+
+curl -Lo- https://bit.ly/janus-bootstrap | bash
+
+curl -L http://install.ohmyz.sh | sh
+chsh -s $(which zsh) $(whoami)
 
 SCRIPT
 
