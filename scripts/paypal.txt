@@ -1,3 +1,9 @@
+https://devtools-paypal.com/guide/pay_paypal/ruby?interactive=OFF&env=sandbox
+https://github.com/paypal/rest-api-sdk-ruby
+
+-----
+
+
 Tue, 12/03/2013 - 15:21 (pp_par_amy)
 Hi,
 We cannot support your usage of Delayed Chained Payments for an ‘All or Nothing’ Crowdfunding Business Model.  As per our Crowdfunding Application Guidelines;

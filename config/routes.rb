@@ -1,5 +1,8 @@
 Impulsideas::Application.routes.draw do
 
+  resources :orders
+  get "orders/:id/execute", to: 'orders#execute', as: 'execute_order'
+
   get "contact_form/new"
   get "contact_form/create"
   resources :items

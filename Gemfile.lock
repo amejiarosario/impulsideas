@@ -181,6 +181,9 @@ GEM
     paypal-sdk-core (0.2.10)
       multi_json (~> 1.0)
       xml-simple
+    paypal-sdk-rest (0.6.1)
+      paypal-sdk-core (~> 0.2.8)
+      uuidtools (~> 2.1)
     pg (0.17.1)
     polyglot (0.3.5)
     pry (0.10.0)
@@ -282,6 +285,7 @@ GEM
     uglifier (2.5.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uuidtools (2.1.4)
     video_info (2.3.1)
       addressable
       htmlentities
@@ -318,6 +322,7 @@ DEPENDENCIES
   omniauth-facebook (= 1.4.0)
   passenger
   paypal-sdk-adaptivepayments
+  paypal-sdk-rest
   pg
   quiet_assets
   rails (~> 4.0.0)

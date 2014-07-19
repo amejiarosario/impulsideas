@@ -21,7 +21,11 @@
 
       <br>
 
-      <p><%= number_to_currency(@item.price) %> <%= link_to 'Comprar', '#', class: 'btn btn-primary', role: 'button' %></p>
+      <p>
+        <%= number_to_currency(@item.price) %>
+        <%= link_to 'Comprar', orders_path(order: { amount: item.price, description: item.title}),
+                                    class: 'btn btn-primary', role: 'button', method: :post %>
+      </p>
 
       <% if @item.project %>
         Soporta: <%= link_to @item.project.title, @item.project %>

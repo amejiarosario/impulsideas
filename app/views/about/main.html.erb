@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col-md-12">
         <h3 class="title"><%= link_to 'Proyectos destacados', projects_path %></h3>
-        <% projects = Project.find(:all, :order => "id desc", :limit => 3) %>
+        <% projects = Project.order("id desc").limit(3) %>
         <% if projects.any? %>
           <div id="projects_container">
             <% projects.each do |project| %>

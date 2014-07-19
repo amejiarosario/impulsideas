@@ -1,7 +1,7 @@
 <div id="project_thumbnail">
   <div class="thumbnail" id="<%= item.id %>">
     <%= link_to item do %>
-      <%= image_tag item.picture_url, alt: item.title, class: 'img-responsive' %>
+      <%= image_tag item.picture_url, alt: item.title %>
     <% end %>
 
     <div class="caption">
@@ -12,7 +12,9 @@
 
       <% unless item.new_record? %>
         <p>
-          <%= link_to 'Comprar', '#', class: 'btn btn-primary', role: 'button' %>
+          <%= link_to 'Comprar', '#', #orders_path(order: { amount: item.price, description: item.title}),
+                                  class: 'btn btn-primary', role: 'button', #method: :post,
+                                    disable_with: "Procesando... #{ image_tag 'loading.gif', size: '16x16' } " %>
           <%= link_to 'Ver mas', item, class: 'btn btn-success', role: 'button' %>
         </p>
       <% end %>
