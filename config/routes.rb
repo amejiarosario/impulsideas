@@ -1,31 +1,35 @@
 Impulsideas::Application.routes.draw do
-
-  resources :orders
-  get "orders/:id/execute", to: 'orders#execute', as: 'execute_order'
+  post 'ipn_notifications/:contribution_id', to: 'payment_notifications#create', as: 'ipn_notifications'
 
   get "contact_form/new"
   get "contact_form/create"
-  resources :items
-  resources :contact_form, only: :create
-
   get "about/faq"
   get "about/faq_en"
-  mount RedactorRails::Engine => '/redactor_rails'
   get "about/index"
   get "about/main"
   get "about/terms"
   get "about/landing"
   get 'about', to: 'about#index', as: 'about'
 
+  #resources :items
+  resources :contact_form, only: :create
   resources :payment_notifications
-  post 'ipn_notifications/:contribution_id', to: 'payment_notifications#create', as: 'ipn_notifications'
+
+  mount RedactorRails::Engine => '/redactor_rails'
 
   resources :projects do
     resources :contributions
+    resources :items, shallow: true
+  end
+  get 'items', to: 'items#index', as: 'items'
+
+  resources :orders do
+    get 'execute', on: :member
   end
 
   devise_for :users, controllers: { :omniauth_callbacks => "users/omniauth_callbacks",
                                     :registrations => "registrations"  }
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -39,7 +39,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     vb.customize ["modifyvm", :id, "--memory", mem]
     vb.customize ["modifyvm", :id, "--cpus", cpus]
-    #vb.customize ["modifyvm", :id, "--memory", "2048"]
   end
 
   # ssh-add -K ~/.ssh/id_rsa
@@ -49,9 +48,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 3000, host: 4000
   config.vm.network :forwarded_port, guest: 3333, host: 5000
 
-  # NFS Sync
-  config.vm.synced_folder '.', '/vagrant', type: 'nfs'
-  config.vm.network 'private_network', ip: '192.168.50.4' # ensure this is available
+  # Folder Sync
+  #config.vm.synced_folder '.', '/vagrant', type: 'rsync'
+  #config.vm.synced_folder '.', '/vagrant', type: 'nfs'
+  #config.vm.network 'private_network', ip: '192.168.50.4' # ensure this is available
 
   config.vm.provision "shell", inline: $script
 

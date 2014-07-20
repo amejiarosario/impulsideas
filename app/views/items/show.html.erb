@@ -18,13 +18,11 @@
         </div>
       <% end %>
 
-
       <br>
 
       <p>
         <%= number_to_currency(@item.price) %>
-        <%= link_to 'Comprar', orders_path(order: { amount: item.price, description: item.title}),
-                                    class: 'btn btn-primary', role: 'button', method: :post %>
+        <%= render 'buy_item_button', item: @item %>
       </p>
 
       <% if @item.project %>

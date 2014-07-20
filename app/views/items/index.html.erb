@@ -7,9 +7,7 @@
       </div>
     <% end %>
   </div>
-
-  <%= link_to 'Crear producto', new_item_path %>
 <% else %>
   <br><br>
-  <p>No hay productos para mostrar. Crea uno nuevo <%= link_to "aqui.", new_item_path %> </p>
+  <p>No hay productos para mostrar. Crea un nuevo producto para <%= link_to "proyectos", projects_path %> </p>
 <% end %>

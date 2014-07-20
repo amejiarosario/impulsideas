@@ -32,6 +32,10 @@ class Project < ActiveRecord::Base
   validates :media_link, presence: true, :format => URI::regexp(%w(http https))
   validates :project_url, :allow_blank => true, :format => URI::regexp(%w(http https))
 
+  def to_param
+    "#{id} #{title}".parameterize
+  end
+
   def total_contributed
     Contribution
       .where(project_id: self.id, payment_status: 'ACTIVE')

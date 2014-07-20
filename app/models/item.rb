@@ -18,4 +18,8 @@ class Item < ActiveRecord::Base
   mount_uploader :picture, PictureUploader
   belongs_to :user
   belongs_to :project
+
+  def to_param
+    "#{id} #{title}".parameterize
+  end
 end

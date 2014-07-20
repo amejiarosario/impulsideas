@@ -3,7 +3,7 @@
 
   <div class="row">
     <div class="col-md-8">
-      <%= simple_form_for(@item) do |f| %>
+      <%= simple_form_for(@item, url: @form_url) do |f| %>
         <%= f.error_notification %>
 
           <div class="form-inputs">
@@ -29,10 +29,12 @@
               'form-control' }, placeholder: 'Cantidad de productos que dispone para vender' %>
             </div>
 
+            <!--
             <div class="form-group well">
-              <%= f.association :project, label: 'Proyecto Asociado', input_html: { class:
+              <%#= f.association :project, label: 'Proyecto Asociado', input_html: { class:
               'form-control' } %>
             </div>
+            -->
 
             <%#=f .input :category %>
             <%#=f .input :tags %>
@@ -40,7 +42,7 @@
 
           <button type="submit" id="submit" class="btn btn-primary">Salvar</button>
           <%=link_to 'Atrás', projects_path, class: 'btn btn-danger' %>
-            <% end %>
+      <% end %>
     </div>
 
 <!--     <div class="col-md-4">

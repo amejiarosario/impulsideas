@@ -1,10 +1,18 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:index, :new, :create]
+  before_action :set_creator, only: :show
 
   # GET /items
   # GET /items.json
+  # GET /projects/:project_id/items
+  # GET /projects/:project_id/items.json
   def index
-    @items = Item.all
+    if @project
+      @items = @project.items
+    else
+      @items = Item.all
+    end
   end
 
   # GET /items/1
@@ -12,19 +20,21 @@ class ItemsController < ApplicationController
   def show
   end
 
-  # GET /items/new
+  # GET /project/:id/items/new
   def new
-    @item = Item.new
+    @item = @project.items.build
+    @form_url = project_items_path(@project)
   end
 
   # GET /items/1/edit
   def edit
+    @form_url = item_path
   end
 
-  # POST /items
-  # POST /items.json
+  # POST /projects/:project_id/items
+  # POST /projects/:project_id/items.json
   def create
-    @item = Item.new(item_params)
+    @item = @project.items.build(item_params)
     @item.user = current_user
 
     respond_to do |format|
@@ -66,6 +76,22 @@ class ItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Item.find(params[:id])
+    end
+
+    def set_project
+      if params[:project_id]
+        @project = Project.find(params[:project_id])
+      else
+        @project = nil
+      end
+    end
+
+    def set_creator
+      if current_user == @item.user
+        @creator = true
+      else
+        @creator = false
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

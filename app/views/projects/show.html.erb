@@ -1,7 +1,5 @@
 <div class="row project_show">
-
   <div class="col-md-8">
-
     <div class="jumbotron">
       <h1><%= @project.title %> <small>por <%= @project.user.emailname %></small></h1>
       <p class="lead"><%= @project.short_description %></p>
@@ -24,7 +22,6 @@
 
     <p>
       <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
       <iframe src="//www.facebook.com/plugins/like.php?href=<%= URI.encode(request.original_url) %>&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=21&amp;appId=420436051410681" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true"></iframe>
     </p>
 
@@ -54,24 +51,17 @@
         <p><%= link_to 'Contribuye!', new_project_contribution_path(@project), class: 'btn btn-success', role: 'button' %></p>
       </div>
     </div>
-    <% if @project.items.any? %>
-      <div class="thumbnail">
+    <div class="thumbnail">
+      <% if @project.items.any? %>
         <div class="caption">
-            <p>
-              <h3>Productos soportando este projecto</h3>
-              <!-- <ul> -->
-                <% @project.items.each do |item| %>
-                  <!-- <li> -->
-                    <%= link_to item do %>
-                      <%= image_tag item.picture_url, alt: item.title, class: 'img-responsive' %> <%= item.title %>
-                    <% end %>
-                  <!-- </li> -->
-                  <br>
-                <% end %>
-              <!-- </ul> -->
-            </p>
+          <h3>Productos soportando este projecto</h3>
         </div>
-      </div>
-    <% end %>
+        <% @project.items.each do |item| %>
+          <%= render 'items/item_thumbnail', item: item %>
+        <% end %>
+      <% end %>
+      <br>
+      <%= link_to 'Crear nuevo producto', new_project_item_path(@project) %>
+    </div>
   </div>
 </div>

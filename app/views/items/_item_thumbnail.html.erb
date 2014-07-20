@@ -12,9 +12,7 @@
 
       <% unless item.new_record? %>
         <p>
-          <%= link_to 'Comprar', '#', #orders_path(order: { amount: item.price, description: item.title}),
-                                  class: 'btn btn-primary', role: 'button', #method: :post,
-                                    disable_with: "Procesando... #{ image_tag 'loading.gif', size: '16x16' } " %>
+          <%= render 'items/buy_item_button', item: item %>
           <%= link_to 'Ver mas', item, class: 'btn btn-success', role: 'button' %>
         </p>
       <% end %>
