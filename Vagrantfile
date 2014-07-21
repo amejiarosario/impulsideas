@@ -50,8 +50,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Folder Sync
   #config.vm.synced_folder '.', '/vagrant', type: 'rsync'
-  #config.vm.synced_folder '.', '/vagrant', type: 'nfs'
   #config.vm.network 'private_network', ip: '192.168.50.4' # ensure this is available
+  config.vm.synced_folder '.', '/vagrant', type: 'nfs'
+  config.vm.network :private_network, ip: "10.11.12.13"
 
   config.vm.provision "shell", inline: $script
 
