@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
         format.html { redirect_to @order.approval_url }
         format.json { render action: 'show', status: :created, location: @order }
       else
-        format.html { render action: 'new' }
+        format.html { redirect_to item_path(@order.orderable), flash: {error: @order.errors.full_messages.join(". ") } }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end

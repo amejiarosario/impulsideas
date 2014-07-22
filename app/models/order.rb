@@ -26,19 +26,26 @@ class Order < ActiveRecord::Base
 
   attr_accessor :approval_url, :paypal_errors
 
-  after_create :create_payment
-
   validates :amount, presence: true
   validates :description, presence: true
+  validate :item_availability
 
   scope :completed, ->{ where(completed: true) }
+
+  after_create :create_payment
+
+  def item_availability
+    if orderable.try(:sold_out?)
+      errors.add(:base, "Producto agotado.")
+    end
+  end
 
   def create_payment
     payment = PayPal::SDK::REST::Payment.new(payment_params)
     payment.create
 
     if payment.success?
-      self.update_column(:payment_uid, payment.id)
+      update_column(:payment_uid, payment.id)
       @approval_url = payment.links[1].href
     else
       messages = payment.error.details.map(&:issue).join(". ")
@@ -46,23 +53,29 @@ class Order < ActiveRecord::Base
       errors.add(:paypal, messages)
     end
 
-    self.update_column(:raw, payment.to_hash)
+    update_column(:raw, payment.to_hash)
     logger.debug "------- #{payment.to_hash}"
   end
 
   def executed_payment? (params)
     return false if params[:cancel]
 
-    payment = PayPal::SDK::REST::Payment.find(self.payment_uid)
+    if orderable.try(:sold_out?)
+      @paypal_errors = "Producto agotado"
+      return false
+    end
+
+    payment = PayPal::SDK::REST::Payment.find(payment_uid)
     status = false
 
     if payment.execute(payer_id: params[:PayerID])
-      self.update_columns(completed: true, raw: payment.to_hash)
+      update_columns(completed: true, raw: payment.to_hash)
+      orderable.update_column(:stock, orderable.stock - 1) if orderable.try(:stock)
 
       logger.debug "------- #{payment.to_hash}"
       status = true
     else
-      self.update_column(:raw, payment.to_hash.merge({ errors: payment.error }))
+      update_column(:raw, payment.to_hash.merge({ errors: payment.error }))
       logger.error "------- #{payment.error}"
       @paypal_errors = "Paypal no pudo realizar la transacción. #{payment.error.try(:[], :message)}"
     end
@@ -72,7 +85,7 @@ class Order < ActiveRecord::Base
 
   def payment_params
     host = Rails.env.production? ? 'beta.impulsideas.com' : '0.0.0.0:4000'
-    url = "#{execute_order_url(self.id, host: host)}"
+    url = "#{execute_order_url(id, host: host)}"
 
     {
       :intent => "sale",
@@ -83,9 +96,9 @@ class Order < ActiveRecord::Base
         :cancel_url => "#{url}?cancel=true" },
       :transactions => [ {
         :amount => {
-          :total => "#{number_to_currency(self.amount, unit: "")}",
+          :total => "#{number_to_currency(amount, unit: "")}",
           :currency => "USD" },
-        :description => "#{self.description}" } ]
+        :description => "#{description}" } ]
     }
   end
 end

@@ -37,17 +37,18 @@ class Project < ActiveRecord::Base
   end
 
   def total_contributed
-    Contribution
-      .where(project_id: self.id, payment_status: 'ACTIVE')
-      .group(:project_id)
+    Project.where(id: self.id)
+      .where("orders.completed='t'")
+      .joins(items: :orders)
       .sum(:amount)
-      .values[0].to_f
+      .to_f
   end
 
   def total_contributors
-   contributions
-    .where(payment_status: 'ACTIVE')
-    .select('DISTINCT(user_id)').count
+    Project.where(id: self.id)
+      .where("orders.completed='t'")
+      .joins(items: :orders)
+      .select('DISTINCT orders.user_id').count
   end
 
   def time_left
