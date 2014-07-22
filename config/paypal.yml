@@ -26,6 +26,6 @@ development:
 
 production:
   <<: *default
-  #client_id: <%= ENV['PAYPAL_LIVE_CLIENT_ID'] %>
-  #client_secret: <%= ENV['PAYPAL_LIVE_SECRET'] %>
-  #mode: live
+  client_id: <%= ENV['PAYPAL_LIVE_CLIENT_ID'] %>
+  client_secret: <%= ENV['PAYPAL_LIVE_SECRET'] %>
+  mode: live
