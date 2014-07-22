@@ -8,6 +8,7 @@ Impulsideas::Application.routes.draw do
   get "about/index"
   get "about/main"
   get "about/terms"
+  get "about/terms_en"
   get "about/landing"
   get 'about', to: 'about#index', as: 'about'
 

@@ -2,6 +2,9 @@ class AboutController < ApplicationController
   def terms
   end
 
+  def terms_en
+  end
+
   def faq
   end
 
