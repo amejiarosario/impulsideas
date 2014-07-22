@@ -49,8 +49,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 3333, host: 5000
 
   # Folder Sync
+
   #config.vm.synced_folder '.', '/vagrant', type: 'rsync'
   #config.vm.network 'private_network', ip: '192.168.50.4' # ensure this is available
+
   config.vm.synced_folder '.', '/vagrant', type: 'nfs'
   config.vm.network :private_network, ip: "10.11.12.13"
 

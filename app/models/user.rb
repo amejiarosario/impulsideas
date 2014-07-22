@@ -21,7 +21,12 @@
 #  name                   :string(255)
 #  username               :string(255)
 #  image                  :text
-#  raw_info               :text
+#  raw                    :hstore
+#
+# Indexes
+#
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
 class User < ActiveRecord::Base
@@ -55,7 +60,7 @@ class User < ActiveRecord::Base
       u.password = Devise.friendly_token[0,20] if u.encrypted_password.blank?
       u.name = auth.info.name if u.name.blank?
       u.image = auth.info.image if u.image.blank?
-      u.raw_info = auth.to_yaml
+      u.raw = auth.to_hash
     end
   end
 

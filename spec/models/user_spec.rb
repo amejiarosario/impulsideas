@@ -21,7 +21,12 @@
 #  name                   :string(255)
 #  username               :string(255)
 #  image                  :text
-#  raw_info               :text
+#  raw                    :hstore
+#
+# Indexes
+#
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
 require 'spec_helper'
