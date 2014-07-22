@@ -24,5 +24,6 @@ module Impulsideas
     config.assets.precompile += %w( .svg .eot .woff .ttf )
 
     # config.active_record.schema_format = :sql
+    config.i18n.default_locale = :es
   end
 end
