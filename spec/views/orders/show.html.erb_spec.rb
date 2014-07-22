@@ -4,7 +4,7 @@ describe "orders/show" do
   before(:each) do
     @order = assign(:order, stub_model(Order,
       :user => nil,
-      :payment_id => "Payment",
+      :payment_uid => "Payment",
       :amount => "9.99",
       :description => "Description"
     ))

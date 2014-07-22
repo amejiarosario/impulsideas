@@ -4,7 +4,7 @@
 #
 #  id          :integer          not null, primary key
 #  user_id     :integer
-#  payment_id  :string(255)
+#  payment_uid  :string(255)
 #  amount      :decimal(, )
 #  description :string(255)
 #  created_at  :datetime
@@ -31,7 +31,7 @@ class Order < ActiveRecord::Base
 
     if payment.success?
       logger.info "------- #{payment.id} | #{payment.to_hash}"
-      self.update_column(:payment_id, payment.id)
+      self.update_column(:payment_uid, payment.id)
       @approval_url = payment.links[1].href
     else
       error_messages = payment.error.details.map(&:issue).join(". ")
@@ -41,10 +41,12 @@ class Order < ActiveRecord::Base
   end
 
   def executed_payment? (params)
-    payment = PayPal::SDK::REST::Payment.find(self.payment_id)
+    payment = PayPal::SDK::REST::Payment.find(self.payment_uid)
     if payment.execute(payer_id: params[:PayerID])
+      logger.info "------- #{payment.to_hash}"
       true
     else
+      logger.error "------- #{payment.error.inspect}"
       paypal_errors = payment.error.details.map(&:issue).join(". ")
       false
     end

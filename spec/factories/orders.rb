@@ -4,7 +4,7 @@
 #
 #  id          :integer          not null, primary key
 #  user_id     :integer
-#  payment_id  :string(255)
+#  payment_uid  :string(255)
 #  amount      :decimal(, )
 #  description :string(255)
 #  created_at  :datetime
@@ -16,7 +16,7 @@
 FactoryGirl.define do
   factory :order do
     user nil
-    payment_id "MyString"
+    payment_uid "MyString"
     amount "9.99"
     description "MyString"
   end

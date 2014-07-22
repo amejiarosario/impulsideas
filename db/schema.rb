@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20140716024721) do
 
   create_table "orders", force: true do |t|
     t.integer  "user_id"
-    t.string   "payment_id"
+    t.string   "payment_uid"
     t.decimal  "amount"
     t.string   "description"
     t.datetime "created_at"
