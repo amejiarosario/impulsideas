@@ -22,4 +22,8 @@ class Item < ActiveRecord::Base
   def to_param
     "#{id} #{title}".parameterize
   end
+
+  def sold_out?
+    self.stock <= 0
+  end
 end

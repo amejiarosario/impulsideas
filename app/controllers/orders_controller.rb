@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   protect_from_forgery :except => [:execute]
   before_action :set_order, only: [:show, :edit, :update, :destroy, :execute]
+  before_action :authenticate_user!
 
   # GET /orders
   # GET /orders.json

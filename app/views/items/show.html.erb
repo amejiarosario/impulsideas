@@ -25,6 +25,8 @@
         <%= render 'buy_item_button', item: @item %>
       </p>
 
+      <p>Solo quedan <%= @item.stock %> producto(s). </p>
+
       <% if @item.project %>
         Soporta: <%= link_to @item.project.title, @item.project %>
       <% end %>

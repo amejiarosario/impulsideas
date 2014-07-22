@@ -4,7 +4,7 @@
 $script = <<SCRIPT
 
 # Ubuntu: Curl development headers with SSL support
-sudo apt-get install -y libcurl4-openssl-dev curl zsh
+sudo apt-get install -y libcurl4-openssl-dev curl zsh postgresql-contrib-9.3
 
 curl -Lo- https://bit.ly/janus-bootstrap | bash
 

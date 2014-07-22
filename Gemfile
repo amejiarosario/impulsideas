@@ -83,3 +83,4 @@ group :development do
 end
 
 gem 'rails_12factor', group: :production
+gem 'codeclimate-test-reporter', group: :test, require: nil
