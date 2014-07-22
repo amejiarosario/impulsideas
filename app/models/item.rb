@@ -18,6 +18,13 @@ class Item < ActiveRecord::Base
   mount_uploader :picture, PictureUploader
   belongs_to :user
   belongs_to :project
+  has_many :orders, as: :orderable
+
+  validates :title, presence: true
+  validates :description, presence: true
+  validates :price, presence: true
+  validates :stock, presence: true
+  validates :user_id, presence: true
 
   def to_param
     "#{id} #{title}".parameterize

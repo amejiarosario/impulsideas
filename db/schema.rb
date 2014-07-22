@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20140716024721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "contributions", force: true do |t|
     t.float    "amount"
@@ -43,9 +44,13 @@ ActiveRecord::Schema.define(version: 20140716024721) do
 
   create_table "orders", force: true do |t|
     t.integer  "user_id"
+    t.integer  "orderable_id"
+    t.string   "orderable_type"
     t.string   "payment_uid"
-    t.decimal  "amount"
+    t.decimal  "amount",         precision: 8, scale: 2
     t.string   "description"
+    t.hstore   "raw"
+    t.boolean  "completed",                              default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

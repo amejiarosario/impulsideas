@@ -12,4 +12,18 @@ module ApplicationHelper
     html.html_safe
   end
 
+  def bootstrap_class_for(flash_type)
+    case flash_type
+      when "success", :success
+        "alert-success"   # Green
+      when "error", :error
+        "alert-danger"    # Red
+      when "alert", :alert
+        "alert-warning"   # Yellow
+      when "notice", :notice
+        "alert-info"      # Blue
+      else
+        flash_type.to_s
+    end
+  end
 end

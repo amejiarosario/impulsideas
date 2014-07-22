@@ -22,5 +22,7 @@ module Impulsideas
 
     config.assets.paths << Rails.root.join("fonts")
     config.assets.precompile += %w( .svg .eot .woff .ttf )
+
+    # config.active_record.schema_format = :sql
   end
 end

@@ -2,54 +2,72 @@
 #
 # Table name: orders
 #
-#  id          :integer          not null, primary key
-#  user_id     :integer
-#  payment_uid  :string(255)
-#  amount      :decimal(, )
-#  description :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id             :integer          not null, primary key
+#  user_id        :integer
+#  orderable_id   :integer
+#  orderable_type :string(255)
+#  payment_uid    :string(255)
+#  amount         :decimal(8, 2)
+#  description    :string(255)
+#  raw            :hstore
+#  completed      :boolean          default(FALSE)
+#  created_at     :datetime
+#  updated_at     :datetime
 #
 
 class Order < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include Rails.application.routes.url_helpers
 
-  belongs_to :user
+  serialize :raw
 
-  attr_accessor :approval_url, :payer_id, :token, :paypal_errors
+  belongs_to :user
+  belongs_to :orderable, polymorphic: true
+
+  attr_accessor :approval_url, :paypal_errors
 
   after_create :create_payment
 
-  # Create a payment by constructing a payment object using access token.
-  # https://devtools-paypal.com/guide/pay_paypal/ruby?interactive=OFF&env=sandbox
+  validates :amount, presence: true
+  validates :description, presence: true
+
+  scope :completed, ->{ where(completed: true) }
+
   def create_payment
     payment = PayPal::SDK::REST::Payment.new(payment_params)
-    logger.info payment_params
-
     payment.create
 
     if payment.success?
-      logger.info "------- #{payment.id} | #{payment.to_hash}"
       self.update_column(:payment_uid, payment.id)
       @approval_url = payment.links[1].href
     else
-      error_messages = payment.error.details.map(&:issue).join(". ")
-      logger.info error_messages
-      errors.add(:paypal, error_messages)
+      messages = payment.error.details.map(&:issue).join(". ")
+      logger.error messages
+      errors.add(:paypal, messages)
     end
+
+    self.update_column(:raw, payment.to_hash)
+    logger.debug "------- #{payment.to_hash}"
   end
 
   def executed_payment? (params)
+    return false if params[:cancel]
+
     payment = PayPal::SDK::REST::Payment.find(self.payment_uid)
+    status = false
+
     if payment.execute(payer_id: params[:PayerID])
-      logger.info "------- #{payment.to_hash}"
-      true
+      self.update_columns(completed: true, raw: payment.to_hash)
+
+      logger.debug "------- #{payment.to_hash}"
+      status = true
     else
-      logger.error "------- #{payment.error.inspect}"
-      paypal_errors = payment.error.details.map(&:issue).join(". ")
-      false
+      self.update_column(:raw, payment.to_hash.merge({ errors: payment.error }))
+      logger.error "------- #{payment.error}"
+      @paypal_errors = "Paypal no pudo realizar la transacción. #{payment.error.try(:[], :message)}"
     end
+
+    status
   end
 
   def payment_params

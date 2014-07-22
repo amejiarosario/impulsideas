@@ -1,6 +1,10 @@
 https://devtools-paypal.com/guide/pay_paypal/ruby?interactive=OFF&env=sandbox
 https://github.com/paypal/rest-api-sdk-ruby
 
+
+  # Create a payment by constructing a payment object using access token.
+  # https://devtools-paypal.com/guide/pay_paypal/ruby?interactive=OFF&env=sandbox
+
 # TODO
 Rails SEO
 http://www.inboundio.com/blog/seo-for-ruby-on-rails-complete-guide/

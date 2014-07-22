@@ -27,11 +27,12 @@ class OrdersController < ApplicationController
   def execute
     respond_to do |format|
       if @order.executed_payment?(params)
-        format.html { redirect_to root_path, notice: 'Orden procesada correctamente.' }
+        format.html { redirect_to item_path(@order.orderable), flash: {success: 'Orden creada satisfactoriamente.'} }
         format.json { head :ok }
       else
-        format.html { redirect_to root_path, notice: @order.paypal_errors }
-        format.json { render json: @order.paypal_errors, status: :unprocessable_entity }
+        status = @order.paypal_errors ? { error: @order.paypal_errors } : { alert: "Orden cancelada." }
+        format.html { redirect_to item_path(@order.orderable), flash: status }
+        format.json { render json: status, status: :unprocessable_entity }
       end
     end
   end
@@ -85,6 +86,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:user_id, :payment_uid, :amount, :description)
+      params.require(:order).permit(:user_id, :amount, :description, :orderable_id, :orderable_type)
     end
 end

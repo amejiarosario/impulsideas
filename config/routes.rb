@@ -21,11 +21,12 @@ Impulsideas::Application.routes.draw do
     resources :contributions
     resources :items, shallow: true
   end
-  get 'items', to: 'items#index', as: 'items'
 
   resources :orders do
     get 'execute', on: :member
   end
+
+  get 'items', to: 'items#index', as: 'items'
 
   devise_for :users, controllers: { :omniauth_callbacks => "users/omniauth_callbacks",
                                     :registrations => "registrations"  }

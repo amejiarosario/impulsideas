@@ -30,14 +30,14 @@
     <!-- <div id="sub-header"></div> tilde.io-->
 
     <% if current_page? root_path %>
-      <%= render 'layouts/flash' %>
+      <%= render partial: "shared/flash_messages", flash: flash %>
       <%= yield %>
     <% else %>
         <!-- <div id="main-wrapper"> -->
           <main role="main" class="container">
             <div class="row">
               <div class="col-md-12">
-                <%= render 'layouts/flash' %>
+                <%= render partial: "shared/flash_messages", flash: flash %>
                 <%= yield %>
               </div>
             </div>
