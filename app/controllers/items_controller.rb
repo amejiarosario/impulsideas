@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_project, only: [:index, :new, :create]
-  before_action :set_creator, only: :show
+  before_action :check_can_edit, only: [:edit, :update, :destroy]
+  before_action :set_creator, only: [:show]
 
   # GET /items
   # GET /items.json
@@ -87,10 +88,17 @@ class ItemsController < ApplicationController
     end
 
     def set_creator
-      if current_user == @item.user
-        @creator = true
-      else
-        @creator = false
+      @creator = @item.user == current_user
+    end
+
+    def check_can_edit
+      unless @item.user == current_user
+        err_msg = 'No puedes modificar este producto.'
+        flash[:error] = err_msg
+        respond_to do |format|
+          format.html { redirect_to @item }
+          format.json { render json: err_msg, status: :unprocessable_entity }
+        end
       end
     end
 

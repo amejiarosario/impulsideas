@@ -71,10 +71,6 @@ class ProjectsController < ApplicationController
       @project = Project.find(params[:id])
     end
 
-    def set_creator
-      @creator = creator?
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:title, :short_description,
@@ -83,13 +79,13 @@ class ProjectsController < ApplicationController
                                       :media_link, :project_url)
     end
 
-    def creator?
-      @project.user == current_user
+    def set_creator
+      @creator = @project.user == current_user
     end
 
     # verify if is user creator
     def check_can_edit
-      if !creator?
+      unless @project.user == current_user
         err_msg = 'No puedes modificar este proyecto.'
         flash[:error] = err_msg
         respond_to do |format|

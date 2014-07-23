@@ -20,8 +20,10 @@
 
 class Project < ActiveRecord::Base
   belongs_to :user
+
   has_many :contributions, dependent: :destroy
   has_many :items, dependent: :destroy
+
   after_save :get_video_info
 
   validates :title, presence: true
