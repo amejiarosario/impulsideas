@@ -19,8 +19,9 @@ Impulsideas::Application.routes.draw do
   mount RedactorRails::Engine => '/redactor_rails'
 
   resources :projects do
-    resources :contributions
+    #resources :contributions
     resources :items, shallow: true
+    get 'orders', on: :member
   end
 
   resources :orders, except: [:update, :destroy, :new, :edit] do

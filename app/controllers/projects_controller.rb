@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :orders]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :check_can_edit, only: [:edit, :update, :destroy]
   before_action :set_creator, only: [:show]
@@ -13,6 +13,13 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+  end
+
+  # GET /projects/1/orders
+  # GET /projects/1/orders.json
+  def orders
+    @orders = Order.completed.by(@project)
+    render 'orders/index'
   end
 
   # GET /projects/new

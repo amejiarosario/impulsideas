@@ -39,9 +39,10 @@ class Order < ActiveRecord::Base
 
   scope :completed, ->{ where(completed: true) }
 
+  scope :by, ->(project) { includes(item: :project).where(projects: {id: project.id}) }
   scope :bought_items_by, ->(user) { where(user: user) }
   scope :sold_items_by, ->(user) { includes(item: :user).where(user: user) }
-  scope :sold_projects_items_by, ->(user) { Order.includes(item: {project: :user}).where(projects: {user_id: user.id}) }
+  scope :sold_projects_items_by, ->(user) { includes(item: {project: :user}).where(projects: {user_id: user.id}) }
 
   after_create :create_payment
 

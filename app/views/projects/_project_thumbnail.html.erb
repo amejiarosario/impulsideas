@@ -44,7 +44,7 @@
 
       <% unless project.new_record? %>
         <p>
-          <%= link_to 'Contribuir', new_project_contribution_path(project), class: 'btn btn-primary', role: 'button' %>
+          <%= link_to 'Contribuir', project, class: 'btn btn-primary', role: 'button' %>
           <%= link_to 'Ver mas', project, class: 'btn btn-success', role: 'button' %>
         </p>
       <% end %>

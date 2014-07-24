@@ -45,7 +45,7 @@
         <p>de un total de <%= @project.funding_duration %> dias</p>
 
         <h3><%= @project.total_contributors %> <small>CONTRIBUYENTE(S)</small></h3>
-        <!-- <p>ver lista de aportes.</p> -->
+        <p>ver <%= link_to 'lista', orders_project_path(@project) %> de aportes</p>
 
         <!-- <br> -->
         <!-- <p><%#= link_to 'Contribuye!', new_project_contribution_path(@project), class: 'btn btn-success', role: 'button' %></p> -->
