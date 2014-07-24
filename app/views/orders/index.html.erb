@@ -1,4 +1,8 @@
-<h1>Ordenes</h1>
+<% if @project %>
+  <h1>Contribuciones</h1>
+<% else %>
+  <h1>Ventas</h1>
+<% end %>
 
 <% if @orders.any? %>
   <table class="table table-hover">

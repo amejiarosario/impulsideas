@@ -61,11 +61,11 @@ namespace :deploy do
           # display log in real time; stop task in case fatal error or not changes in git repo found
           stdin.each { |line| print line; abort('EXIT!') if line.match(/fatal:|Everything up-to-date/); }
         rescue Errno::EIO => err
-          puts 'Errno:EIO error: #{err}'
+          puts "Errno:EIO error: #{err}"
         end
       end
-    rescue PTY::ChildExited
-      puts 'PTY::ChildExited'
+    rescue PTY::ChildExited => err2
+      puts "PTY::ChildExited: #{err2}"
     end
   end
 

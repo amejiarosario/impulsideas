@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy, :orders]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :orders]
   before_action :check_can_edit, only: [:edit, :update, :destroy]
   before_action :set_creator, only: [:show]
 

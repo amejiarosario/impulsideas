@@ -65,7 +65,7 @@ class OrdersController < ApplicationController
 
     def check_creator
       unless @order.item.user == current_user
-        err_msg = 'Orden inaccesible.'
+        err_msg = 'Orden accessible solo por vendedor.'
         flash[:error] = err_msg
         respond_to do |format|
           format.html { redirect_to orders_path }
