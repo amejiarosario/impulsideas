@@ -87,7 +87,7 @@ class ProjectsController < ApplicationController
     end
 
     def set_creator
-      @creator = @project.user == current_user || current_user.admin?
+      @creator = @project.user == current_user || current_user.try(:admin?)
     end
 
     # verify if is user creator
