@@ -88,7 +88,7 @@ class ItemsController < ApplicationController
     end
 
     def set_creator
-      @creator = @item.user == current_user
+      @creator = @item.user == current_user || current_user.admin?
     end
 
     def check_can_edit
