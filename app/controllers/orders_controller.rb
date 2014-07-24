@@ -64,6 +64,7 @@ class OrdersController < ApplicationController
     end
 
     def check_creator
+      return true if current_user.admin?
       unless @order.item.user == current_user
         err_msg = 'Orden accessible solo por vendedor.'
         flash[:error] = err_msg

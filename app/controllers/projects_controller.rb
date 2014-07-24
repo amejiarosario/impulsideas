@@ -92,6 +92,7 @@ class ProjectsController < ApplicationController
 
     # verify if is user creator
     def check_can_edit
+      return true if current_user.admin?
       unless @project.user == current_user
         err_msg = 'No puedes modificar este proyecto.'
         flash[:error] = err_msg

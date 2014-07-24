@@ -37,8 +37,8 @@ class Order < ActiveRecord::Base
   validates :description, presence: true
   validate :item_availability
 
+  default_scope order('id ASC')
   scope :completed, ->{ where(completed: true) }
-
   scope :by, ->(project) { includes(item: :project).where(projects: {id: project.id}) }
   scope :bought_items_by, ->(user) { where(user: user) }
   scope :sold_items_by, ->(user) { includes(item: :user).where(items: {user_id: user.id}) }

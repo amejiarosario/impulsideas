@@ -92,6 +92,7 @@ class ItemsController < ApplicationController
     end
 
     def check_can_edit
+      return true if current_user.admin?
       unless @item.user == current_user
         err_msg = 'No puedes modificar este producto.'
         flash[:error] = err_msg
