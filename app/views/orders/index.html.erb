@@ -1,12 +1,13 @@
-<h1>Listing orders</h1>
+<h1>Ordenes</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>User</th>
-      <th>Payment</th>
-      <th>Amount</th>
+      <th>ID</th>
+      <th>Usuario</th>
       <th>Description</th>
+      <th>Precio</th>
+      <th>Fecha</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,10 +17,11 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.user %></td>
-        <td><%= order.payment_uid %></td>
-        <td><%= order.amount %></td>
+        <td><%= link_to order.id, order %></td>
+        <td><%= order.user.emailname %></td>
         <td><%= order.description %></td>
+        <td><%= number_to_currency(order.amount) %></td>
+        <td><%=l order.created_at, format: :short %></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -30,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Order', new_order_path %>
+<%#= link_to 'New Order', new_order_path %>

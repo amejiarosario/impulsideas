@@ -26,7 +26,10 @@ class Order < ActiveRecord::Base
   serialize :raw
 
   belongs_to :user
+
   belongs_to :orderable, polymorphic: true
+  belongs_to :item, foreign_key: 'orderable_id'
+
 
   attr_accessor :approval_url, :paypal_errors
 
@@ -35,6 +38,10 @@ class Order < ActiveRecord::Base
   validate :item_availability
 
   scope :completed, ->{ where(completed: true) }
+
+  scope :bought_items, ->(user) { where(user: user) }
+  scope :sold_items, ->(user) { includes(item: :user).where(user: user) }
+  scope :sold_projects_items, ->(user) { Order.includes(item: {project: :user}).where(projects: {user_id: user.id}) }
 
   after_create :create_payment
 

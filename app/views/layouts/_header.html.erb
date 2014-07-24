@@ -38,6 +38,9 @@
                   <li><%= link_to edit_user_registration_path do %>
                     <span class="fa fa-edit"></span> Editar cuenta
                   <% end %>
+                  <li><%= link_to orders_path do %>
+                    <span class="fa fa-money"></span> Ordenes
+                  <% end %>
                   </li>
                   <li class="divider"></li>
                   <li><%= link_to destroy_user_session_path, :method=>'delete' do %>
