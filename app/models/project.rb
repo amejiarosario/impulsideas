@@ -40,7 +40,7 @@ class Project < ActiveRecord::Base
 
   def total_contributed
     Project.where(id: self.id)
-      .where("orders.completed='t'")
+      .where("orders.workflow_state='completed'")
       .joins(items: :orders)
       .sum(:amount)
       .to_f
@@ -48,7 +48,7 @@ class Project < ActiveRecord::Base
 
   def total_contributors
     Project.where(id: self.id)
-      .where("orders.completed='t'")
+      .where("orders.workflow_state='completed'")
       .joins(items: :orders)
       .select('DISTINCT orders.user_id').count
   end

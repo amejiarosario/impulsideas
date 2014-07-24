@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140724052134) do
+ActiveRecord::Schema.define(version: 20140724153611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,12 +50,14 @@ ActiveRecord::Schema.define(version: 20140724052134) do
     t.decimal  "amount",         precision: 8, scale: 2
     t.string   "description"
     t.hstore   "raw"
-    t.boolean  "completed",                              default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "workflow_state",                         default: "awaiting_payment"
   end
 
+  add_index "orders", ["orderable_id", "orderable_type"], name: "index_orders_on_orderable_id_and_orderable_type", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+  add_index "orders", ["workflow_state"], name: "index_orders_on_workflow_state", using: :btree
 
   create_table "payment_notifications", force: true do |t|
     t.text     "params"

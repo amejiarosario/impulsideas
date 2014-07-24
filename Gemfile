@@ -66,6 +66,7 @@ gem 'omniauth-facebook', '1.4.0'
 gem 'newrelic_rpm'
 gem 'passenger'
 gem 'geocoder'
+gem 'workflow' # orders' state machine
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
@@ -80,6 +81,7 @@ group :development do
   gem 'guard-rspec', require: false
   gem 'terminal-notifier-guard'
   gem 'quiet_assets'
+  gem 'ruby-graphviz'
 end
 
 gem 'rails_12factor', group: :production

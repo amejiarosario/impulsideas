@@ -12,7 +12,8 @@
 
 <p>
   <strong>Descripción:</strong>
-  <%= @order.description %> (<%= @order.orderable_type %>)
+  <%= link_to @order.description, @order.item %>
+  (<%= @order.orderable_type %>)
 </p>
 
 <p>
@@ -31,8 +32,14 @@
 </p>
 
 <p>
-  <strong>Completada:</strong>
-  <%=t @order.completed.to_s %>
+  <strong>Orden completada:</strong>
+  <%=t @order.completed?.to_s %>
+  (<%=t @order.workflow_state %>)
+</p>
+
+<p>
+  <strong>Estado de la Orden:</strong>
+  <%=raw link_to_events(@order, current_user)  %>
 </p>
 
 <p>

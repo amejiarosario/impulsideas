@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   protect_from_forgery except: :execute
-  before_action :set_order, only: [:show, :execute]
+  before_action :set_order, only: [:show, :execute, :event]
   before_action :check_creator, only: :show
 
   # GET /orders
@@ -35,6 +35,21 @@ class OrdersController < ApplicationController
     end
   end
 
+  # GET /orders/:id/event/:event
+  def event
+    event = params[:event]
+
+    respond_to do |format|
+      if @order.send("#{event}!")
+        format.html { redirect_to @order, flash: {success: "La orden ejecutó correctamente la acción de '#{t(event)}'."}}
+        format.json { render action: 'show', status: :created, location: @order }
+      else
+        format.html { redirect_to @order, flash: {error: @order.errors.full_messages.join(". ") } }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # POST /orders
   # POST /orders.json
   def create
@@ -60,7 +75,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:user_id, :amount, :description, :orderable_id, :orderable_type)
+      params.require(:order).permit(:user_id, :amount, :description, :orderable_id, :orderable_type, :action)
     end
 
     def check_creator

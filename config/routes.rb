@@ -26,6 +26,7 @@ Impulsideas::Application.routes.draw do
 
   resources :orders, except: [:update, :destroy, :new, :edit] do
     get 'execute', on: :member
+    get 'event/:event' => 'orders#event', on: :member, as: 'event'
   end
 
   get 'items', to: 'items#index', as: 'items'
