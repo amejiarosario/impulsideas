@@ -1,19 +1,22 @@
-# rake deploy:default                     # Push app to heroku:production, migrate, restarts and tail logs
-# rake deploy:production                  # Push app to production, migrate, restarts, tag and tail logs
-# rake deploy:production:config           # production config
-# rake deploy:production:console          # production console
-# rake deploy:production:logs             # production logs
-# rake deploy:production:ps               # production ps
-# rake deploy:production:releases         # production releases
-# rake deploy:staging                     # Push app to staging, migrate, restarts, tag and tail logs
-# rake deploy:staging:config              # staging config
-# rake deploy:staging:console             # staging console
-# rake deploy:staging:logs                # staging logs
-# rake deploy:staging:ps                  # staging ps
-# rake deploy:staging:releases            # staging releases
+# rake deploy                      # Push app to heroku:production, migrate, restarts and tail logs
+# rake deploy:production           # Push app to production, migrate, restarts, tag and tail logs
+# rake deploy:production:config    # production config
+# rake deploy:production:console   # production console
+# rake deploy:production:logs      # production logs
+# rake deploy:production:ps        # production ps
+# rake deploy:production:releases  # production releases
+# rake deploy:staging              # Push app to staging, migrate, restarts, tag and tail logs
+# rake deploy:staging:config       # staging config
+# rake deploy:staging:console      # staging console
+# rake deploy:staging:logs         # staging logs
+# rake deploy:staging:ps           # staging ps
+# rake deploy:staging:releases     # staging releases
 
 # use pty to monitor git push and stop further tasks in case of error (it helps to avoid tagging in case of error during deployment)
 require 'pty'
+
+desc "Push app to heroku:production, migrate, restarts and tail logs"
+task deploy: 'deploy:default'
 
 namespace :deploy do
   PRODUCTION_APP = 'impulsideas-2014'
@@ -38,17 +41,16 @@ namespace :deploy do
   end
 
   task :set_production_app do
-    puts "setting app to #{PRODUCTION_APP}"
+    puts "Setting app to #{PRODUCTION_APP}..."
   	APP = PRODUCTION_APP
   end
 
-  desc "Push app to heroku:production, migrate, restarts and tail logs"
   task default: [:set_production_app, :push, :off, :migrate, :restart, :on, 'app:logs']
 
   task :push do
     puts "Pushing branch..."
     git_status = `git status -v`
-    abort("Local branch is out of sync with github origin. Please push there first.") if git_status.match(/\*[^\]]+?\[ahead|behind/s) != nil
+    abort("Local branch is out of sync with github origin. Please push there first.") if git_status.match(/\*[^\]]+?\[staged|ahead|behind/s) != nil
     current_branch = `git rev-parse --abbrev-ref HEAD`.chomp
     current_branch += ":master" if current_branch != "master"
     puts "Deploying #{current_branch} to #{APP} ..."

@@ -24,7 +24,7 @@
           <td><%= number_to_currency(order.amount) %></td>
           <td><%=l order.created_at, format: :short %></td>
           <td><%= order.item.user.emailname %></td>
-          <td><%= order.item.project.title %></td>
+          <td><%= link_to order.item.project.title, order.item.project %></td>
           <td><%= link_to 'Detalles', order %></td>
         </tr>
       <% end %>
@@ -62,7 +62,7 @@
           <td><%= number_to_currency(order.amount) %></td>
           <td><%=l order.created_at, format: :short %></td>
           <td><%= order.item.user.emailname %></td>
-          <td><%= order.item.project.title %></td>
+          <td><%= link_to order.item.project.title, order.item.project %></td>
           <td><%= link_to 'Detalles', order %></td>
         </tr>
       <% end %>
