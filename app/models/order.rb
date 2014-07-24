@@ -28,7 +28,7 @@ class Order < ActiveRecord::Base
   belongs_to :user
 
   belongs_to :orderable, polymorphic: true
-  belongs_to :item, foreign_key: 'orderable_id'
+  belongs_to :item, -> { includes(:orders).where(orders: {orderable_type: 'Item'})}, foreign_key: 'orderable_id'
 
 
   attr_accessor :approval_url, :paypal_errors
@@ -39,9 +39,9 @@ class Order < ActiveRecord::Base
 
   scope :completed, ->{ where(completed: true) }
 
-  scope :bought_items, ->(user) { where(user: user) }
-  scope :sold_items, ->(user) { includes(item: :user).where(user: user) }
-  scope :sold_projects_items, ->(user) { Order.includes(item: {project: :user}).where(projects: {user_id: user.id}) }
+  scope :bought_items_by, ->(user) { where(user: user) }
+  scope :sold_items_by, ->(user) { includes(item: :user).where(user: user) }
+  scope :sold_projects_items_by, ->(user) { Order.includes(item: {project: :user}).where(projects: {user_id: user.id}) }
 
   after_create :create_payment
 

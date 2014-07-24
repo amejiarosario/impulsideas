@@ -1,35 +1,73 @@
 <h1>Ordenes</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Usuario</th>
-      <th>Description</th>
-      <th>Precio</th>
-      <th>Fecha</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orders.each do |order| %>
+<% if @orders.any? %>
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td><%= link_to order.id, order %></td>
-        <td><%= order.user.emailname %></td>
-        <td><%= order.description %></td>
-        <td><%= number_to_currency(order.amount) %></td>
-        <td><%=l order.created_at, format: :short %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>ID</th>
+        <th>Comprador</th>
+        <th>Description</th>
+        <th>Precio</th>
+        <th>Fecha</th>
+        <th>Vendedor</th>
+        <th>Projecto</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= link_to order.id, order %></td>
+          <td><%= order.user.emailname %></td>
+          <td><%= order.description %></td>
+          <td><%= number_to_currency(order.amount) %></td>
+          <td><%=l order.created_at, format: :short %></td>
+          <td><%= order.item.user.emailname %></td>
+          <td><%= order.item.project.title %></td>
+          <td><%= link_to 'Detalles', order %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No hay ordenes para mostrar.</p>
+<% end %>
 
-<%#= link_to 'New Order', new_order_path %>
+<hr>
+<h1>Compras</h1>
+<hr>
+
+<% if @orders_bought.any? %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Comprador</th>
+        <th>Description</th>
+        <th>Precio</th>
+        <th>Fecha</th>
+        <th>Vendedor</th>
+        <th>Projecto</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @orders_bought.each do |order| %>
+        <tr>
+          <td><%= link_to order.id, order %></td>
+          <td><%= order.user.emailname %></td>
+          <td><%= order.description %></td>
+          <td><%= number_to_currency(order.amount) %></td>
+          <td><%=l order.created_at, format: :short %></td>
+          <td><%= order.item.user.emailname %></td>
+          <td><%= order.item.project.title %></td>
+          <td><%= link_to 'Detalles', order %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No hay compras para mostrar.</p>
+<% end %>

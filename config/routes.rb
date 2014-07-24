@@ -23,7 +23,7 @@ Impulsideas::Application.routes.draw do
     resources :items, shallow: true
   end
 
-  resources :orders do
+  resources :orders, except: [:update, :destroy, :new, :edit] do
     get 'execute', on: :member
   end
 

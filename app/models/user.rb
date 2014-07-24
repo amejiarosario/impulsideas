@@ -22,6 +22,7 @@
 #  username               :string(255)
 #  image                  :text
 #  raw                    :hstore
+#  admin                  :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -47,6 +48,10 @@ class User < ActiveRecord::Base
 
   def emailname
     self.name || self.username || self.email.gsub(/@.*$/, '')
+  end
+
+  def admin?
+    admin
   end
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)

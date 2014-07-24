@@ -53,7 +53,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.synced_folder '.', '/vagrant', type: 'rsync'
   #config.vm.network 'private_network', ip: '192.168.50.4' # ensure this is available
 
-  config.vm.synced_folder '.', '/vagrant', type: 'nfs'
+  # http://chase-seibert.github.io/blog/2014/03/09/vagrant-cachefilesd.html
+  config.vm.synced_folder '.', '/vagrant', type: 'nfs', mount_options: ['rw', 'vers=3', 'tcp', 'fsc']  # the fsc is for cachedfilesd
   config.vm.network :private_network, ip: "10.11.12.13"
 
   config.vm.provision "shell", inline: $script

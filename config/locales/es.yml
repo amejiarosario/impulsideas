@@ -20,6 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 es:
+  "true": "sí"
+  "false": "no"
+  hello: Hola Mundo
   date:
     abbr_day_names:
     - dom

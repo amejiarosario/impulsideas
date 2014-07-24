@@ -22,6 +22,7 @@
 #  username               :string(255)
 #  image                  :text
 #  raw                    :hstore
+#  admin                  :boolean          default(FALSE)
 #
 # Indexes
 #

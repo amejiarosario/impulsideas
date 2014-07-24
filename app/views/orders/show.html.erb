@@ -1,24 +1,48 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @order.user %>
+  <strong>Comprador:</strong>
+  <%= @order.user.emailname %>
 </p>
 
 <p>
-  <strong>Payment:</strong>
+  <strong>Vendedor:</strong>
+  <%= @order.item.user.emailname %>
+</p>
+
+<p>
+  <strong>Descripción:</strong>
+  <%= @order.description %> (<%= @order.orderable_type %>)
+</p>
+
+<p>
+  <strong>Creada:</strong>
+  <%=l @order.created_at, format: :long %>
+</p>
+
+<p>
+  <strong>Ref. de Pago:</strong>
   <%= @order.payment_uid %>
 </p>
 
 <p>
-  <strong>Amount:</strong>
-  <%= @order.amount %>
+  <strong>Precio:</strong>
+  <%= number_to_currency(@order.amount) %>
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @order.description %>
+  <strong>Completada:</strong>
+  <%=t @order.completed.to_s %>
 </p>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
+<p>
+  <strong>Projecto:</strong>
+  <%= link_to @order.item.project.title, @order.item.project %>
+</p>
+
+<p>
+  <strong>Informacion Adicional:</strong>
+  <pre><%= @order.raw.to_yaml %></pre>
+</p>
+
 <%= link_to 'Back', orders_path %>
