@@ -12,8 +12,8 @@
 
 <p>
   <strong>Descripción:</strong>
-  <%= link_to @order.description, @order.item %>
-  (<%= @order.orderable_type %>)
+  <%= @order.description %>
+  (<%= link_to @order.orderable_type, @order.item %>)
 </p>
 
 <p>

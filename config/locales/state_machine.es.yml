@@ -12,4 +12,4 @@ es:
   deliver: enviar
   refund: reembolsar
   confirm_refund: confirmar_reembolso
-  confirm_delivered: confirmar
+  confirm_delivery: confirmar envio
