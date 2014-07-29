@@ -27,7 +27,7 @@ FactoryGirl.define do
     media_link "http://www.youtube.com/watch?v=EDUpiVwi6lw"
     extended_description "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel sem eu lectus dictum ornare amet."
     funding_goal 1522.3
-    funding_duration 90
+    funding_duration 50
     category "MyString"
     tags "MyString"
     association :user

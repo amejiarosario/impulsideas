@@ -10,6 +10,7 @@
 #  amount         :decimal(8, 2)
 #  description    :string(255)
 #  raw            :hstore
+#  completed      :boolean          default(FALSE)
 #  created_at     :datetime
 #  updated_at     :datetime
 #  workflow_state :string(255)      default("awaiting_payment")
@@ -26,8 +27,6 @@ class Order < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   include Workflow
 
-  serialize :raw
-
   belongs_to :user
 
   belongs_to :orderable, polymorphic: true
@@ -36,7 +35,7 @@ class Order < ActiveRecord::Base
 
   attr_accessor :approval_url, :paypal_errors
 
-  validates :amount, presence: true
+  validates :amount, presence: true, numericality: { greater_or_equal_to: 0 }
   validates :description, presence: true
   validate :item_availability
 
@@ -68,7 +67,7 @@ class Order < ActiveRecord::Base
       errors.add(:paypal, messages)
     end
 
-    update_column(:raw, payment.to_hash)
+    update_columns(raw: payment.to_hash)
     logger.debug "------- #{payment.to_hash}"
   end
 

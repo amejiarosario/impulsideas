@@ -21,9 +21,31 @@
 require 'spec_helper'
 
 describe Project do
-  it { should belong_to(:user) }
-  it { should have_many(:contributions) }
+  subject { FactoryGirl.build :project }
+  let(:invalid_links) { %w[scheme://domain:port/path?query_string#fragment_id ftp://ftp.is.co.za/rfc/rfc1808.txt ldap://[2001:db8::7]/c=GB?objectClass?one] }
+  let(:valid_links) { %w[http://files.amr.com:8080/hello?s=562?10 https://www.youtube.com/watch?v=W06qYx2ouSQ] }
 
+  it { should belong_to :user }
+  it { should_not have_many :contributions }
+  it { should have_many :orders }
+  it { should have_many :items }
+  it { should validate_presence_of :title }
+  it { should validate_presence_of :short_description }
+  it { should validate_presence_of :extended_description }
+  it { should validate_presence_of :funding_goal }
+  it { should validate_presence_of :funding_duration }
+  it { should validate_presence_of :media_link }
+  it { should ensure_length_of(:short_description).is_at_least(5) }
+  it { should ensure_length_of(:extended_description).is_at_least(50) }
+  it { should validate_numericality_of(:funding_goal).is_greater_than(0.0) }
+  it { should validate_numericality_of(:funding_duration).is_greater_than(0).is_less_than_or_equal_to(90) }
+  it { should ensure_length_of(:short_description).is_at_least(5) }
+  [:media_link, :project_url].each do |attribute|
+    it { should allow_value(valid_links).for(attribute)}
+    it { should_not allow_value(invalid_links).for(attribute)}
+  end
+
+=begin
   let(:user) { FactoryGirl.create :user }
   let(:project) { FactoryGirl.create :project, funding_goal: 1000 }
 
@@ -81,4 +103,5 @@ describe Project do
       end
     end
   end
+=end
 end

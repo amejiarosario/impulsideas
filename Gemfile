@@ -64,7 +64,6 @@ gem 'mini_magick'
 gem 'google-analytics-rails'
 gem 'omniauth-facebook', '1.4.0'
 gem 'newrelic_rpm'
-gem 'passenger'
 gem 'geocoder'
 gem 'workflow' # orders' state machine
 
@@ -75,6 +74,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'annotate'
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -82,8 +82,17 @@ group :development do
   gem 'terminal-notifier-guard'
   gem 'quiet_assets'
   gem 'ruby-graphviz'
+  gem 'thin'
 end
 
-gem 'rails_12factor', group: :production
-gem 'codeclimate-test-reporter', group: :test, require: nil
+group :test do
+  gem 'codeclimate-test-reporter', require: nil
+  gem 'webmock'
+  gem 'vcr'
+end
+
+group :production do
+  gem 'rails_12factor'
+  gem 'passenger'
+end
 

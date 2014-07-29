@@ -27,6 +27,7 @@ FactoryGirl.define do
     description "MyText"
     price "9.99"
     stock 1
-    user nil
+    association :user
+    association :project
   end
 end

@@ -21,18 +21,22 @@
 class Project < ActiveRecord::Base
   belongs_to :user
 
-  has_many :contributions, dependent: :destroy
   has_many :items, dependent: :destroy
-
-  after_save :get_video_info
+  has_many :orders, through: :items
 
   validates :title, presence: true
   validates :short_description, presence: true, length: { minimum: 5 }
-  validates :extended_description, presence: true, length: { minimum: 100 }
-  validates :funding_goal, presence: true, numericality: { greater_than: 0 }
-  validates :funding_duration, presence: true, numericality: {greater_than: 0, less_than: 91}
-  validates :media_link, presence: true, :format => URI::regexp(%w(http https))
-  validates :project_url, :allow_blank => true, :format => URI::regexp(%w(http https))
+  validates :extended_description, presence: true, length: { minimum: 50 }
+  validates :funding_goal, presence: true, numericality: { greater_than: 0.0 }
+  validates :funding_duration, presence: true, numericality: {
+    greater_than: 0, less_than_or_equal_to: 90
+  }
+  validates :media_link, presence: true,
+    format: URI::regexp(%w(http https))
+  validates :project_url, :allow_blank => true,
+    format: URI::regexp(%w(http https))
+
+  after_save :get_video_info
 
   def to_param
     "#{id} #{title}".parameterize

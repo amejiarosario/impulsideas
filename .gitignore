@@ -20,3 +20,4 @@ public/system/redactor_assets
 public/uploads/*
 cookbooks/
 .vagrant/
+coverage/

@@ -7,6 +7,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rails'
+# require 'webmock/rspec'
 include Warden::Test::Helpers
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -45,5 +46,12 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
+  config.infer_spec_type_from_file_location!
+
   config.include Capybara::DSL
+end
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+  c.hook_into :webmock # or :fakeweb
 end

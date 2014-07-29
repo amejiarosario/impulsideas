@@ -10,6 +10,7 @@
 #  amount         :decimal(8, 2)
 #  description    :string(255)
 #  raw            :hstore
+#  completed      :boolean          default(FALSE)
 #  created_at     :datetime
 #  updated_at     :datetime
 #  workflow_state :string(255)      default("awaiting_payment")
@@ -25,9 +26,9 @@
 
 FactoryGirl.define do
   factory :order do
-    user nil
     payment_uid "MyString"
     amount "9.99"
     description "MyString"
+    association :user
   end
 end
