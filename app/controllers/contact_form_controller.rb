@@ -15,9 +15,10 @@ class ContactFormController < ApplicationController
         format.json { render json: "Email enviado correctamente." }
         format.js { render :create }
       else
+        logger.error "ContactForm Errors: @user.errors.full_messages"
         format.html { render action: 'new' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
-        format.js { render json: @user.errors, status: :unprocessable_entity }
+        format.js { render :create }
       end
     end
   end
