@@ -66,6 +66,7 @@ gem 'omniauth-facebook', '1.4.0'
 gem 'newrelic_rpm'
 gem 'geocoder'
 gem 'workflow' # orders' state machine
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
