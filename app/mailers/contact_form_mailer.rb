@@ -4,9 +4,9 @@ class ContactFormMailer < ActionMailer::Base
 
   def notification_email(user)
     @user = user
-    mail(to: "adriansky@gmail.com", 
-      subject: "#{user.name} - Impulsideas Landing Page", 
-      body: user.message, 
+    mail(to: "email@impulsideas.com",
+      subject: "#{user.name} - Impulsideas Landing Page",
+      body: "Email: #{user.email}\r\n<br>Nombre:#{user.name}\r\n<br>Mensaje#{user.message}",
       from: "#{user.name} <#{user.email}>",
       reply_to: "#{user.name} <#{user.email}>")
   end
