@@ -1,3 +1,4 @@
+#
 # == Schema Information
 #
 # Table name: users
@@ -29,25 +30,22 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
   has_many :projects, dependent: :destroy
   has_many :contributions
 
-  validates :password, :confirmation => true,
-            :length => {:within => 6..40},
-            :allow_blank => true,
-            :on => :update
+  validates :password, confirmation: true,
+    length: { within: 6..40 },
+    allow_blank: true,
+    on: :update
 
-  FORBIDDEN_COUNTRIES = %w|IN TW MY SG|
+  FORBIDDEN_COUNTRIES = %w(IN TW MY SG)
 
   def emailname
-    self.name || self.username || self.email.gsub(/@.*$/, '')
+    name || username || email.gsub(/@.*$/, '')
   end
 
   def admin?

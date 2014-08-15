@@ -1,3 +1,4 @@
+#
 # == Schema Information
 #
 # Table name: orders
@@ -10,7 +11,6 @@
 #  amount         :decimal(8, 2)
 #  description    :string(255)
 #  raw            :hstore
-#  completed      :boolean          default(FALSE)
 #  created_at     :datetime
 #  updated_at     :datetime
 #  workflow_state :string(255)      default("awaiting_payment")
@@ -21,7 +21,6 @@
 #  index_orders_on_user_id                          (user_id)
 #  index_orders_on_workflow_state                   (workflow_state)
 #
-
 class Order < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include Rails.application.routes.url_helpers
@@ -30,8 +29,7 @@ class Order < ActiveRecord::Base
   belongs_to :user
 
   belongs_to :orderable, polymorphic: true
-  belongs_to :item, -> { includes(:orders).where(orders: {orderable_type: 'Item'})}, foreign_key: 'orderable_id'
-
+  belongs_to :item, -> { includes(:orders).where(orders: { orderable_type: 'Item' }) }, foreign_key: 'orderable_id'
 
   attr_accessor :approval_url, :paypal_errors
 
@@ -40,8 +38,8 @@ class Order < ActiveRecord::Base
   validate :item_availability
 
   default_scope { order('id ASC') }
-  scope :completed, ->{ with_completed_state }
-  scope :by, ->(project) { includes(item: :project).where(projects: {id: project.id}) }
+  scope :completed, -> { with_completed_state }
+  scope :by, -> (project) { includes(item: :project).where(projects: { id: project.id }) }
   scope :bought_items_by, ->(user) { where(user: user) }
   scope :sold_items_by, ->(user) { includes(item: :user).where(items: {user_id: user.id}) }
   scope :sold_projects_items_by, ->(user) { includes(item: {project: :user}).where(projects: {user_id: user.id}) }

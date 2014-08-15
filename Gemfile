@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.1.2"
+ruby '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.0.0'
@@ -66,7 +66,7 @@ gem 'omniauth-facebook', '1.4.0'
 gem 'newrelic_rpm'
 gem 'geocoder'
 gem 'workflow' # orders' state machine
-gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cors', require: 'rack/cors'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
@@ -76,6 +76,7 @@ group :development, :test do
   gem 'launchy'
   gem 'annotate'
   gem 'dotenv-rails'
+  gem 'simplecov'
 end
 
 group :development do
@@ -84,6 +85,8 @@ group :development do
   gem 'quiet_assets'
   gem 'ruby-graphviz'
   gem 'thin'
+  gem 'metric_fu', require: false
+  gem 'rubocop', require: false
 end
 
 group :test do
@@ -96,4 +99,3 @@ group :production do
   gem 'rails_12factor'
   gem 'passenger'
 end
-

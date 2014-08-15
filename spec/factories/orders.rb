@@ -10,7 +10,6 @@
 #  amount         :decimal(8, 2)
 #  description    :string(255)
 #  raw            :hstore
-#  completed      :boolean          default(FALSE)
 #  created_at     :datetime
 #  updated_at     :datetime
 #  workflow_state :string(255)      default("awaiting_payment")
