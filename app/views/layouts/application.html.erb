@@ -25,45 +25,42 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <header>
-      <%= render 'layouts/header' %>
-      <%= yield(:header) if content_for?(:header) %>
-    </header>
+    <%= render 'layouts/header' %>
 
-    <!-- <div id="sub-header"></div> tilde.io-->
+    <div id="wrapper">
+      <%= yield(:header) if content_for? :header %>
 
-    <% if current_page? root_path %>
-      <%= render partial: "shared/flash_messages", flash: flash %>
-      <%= yield %>
-    <% else %>
-        <!-- <div id="main-wrapper"> -->
-          <main role="main" class="container">
-            <div class="row">
-              <div class="col-md-12">
-                <%= render partial: "shared/flash_messages", flash: flash %>
-                <%= yield %>
-              </div>
-            </div>
-          </main>
-        <!-- </div> -->
-    <% end %>
-
-    <footer id="footer">
-      <div class="container">
-          <ul class="list-inline">
-            <li> <%= link_to "Principal", root_path %> </li>
-            <li> <%= link_to "Condiciones de Uso", about_terms_path %> </li>
-            <li> <%= link_to "Preguntas Frecuentes", about_faq_path %> </li>
-            <!--<li><a href="#">Our Blog</a></li><li><a href="#">Contact Us</a></li>-->
-          </ul>
-        <p class="text-muted credit">© <%= Time.now.year %>  <strong>GAPEK, SRL</strong> · Created by <strong><a href="http://adrianmejia.com" style="color: inherit; text-decoration: inherit;">Adrian Mejia</a></strong></p>
-        <p class="text-muted credit"></p>
+      <div id="main-content">
+        <%= render 'shared/flash_messages', flash: flash %>
+        <%= yield %>
       </div>
-    </footer>
 
+      <aside></aside>
+    </div><!-- div#wrapper -->
+
+      <footer>
+        <p>Copyright © <%= Time.now.year %>  <strong>GAPEK, SRL</strong> · Developed by <strong><a href="http://adrianmejia.com">Adrian Mejia</a></strong></p>
+        <div>
+          <a href="https://www.facebook.com/impulsideas">
+            <span class="fa-stack fa-2x">
+              <i class="fa fa-circle-thin fa-stack-2x"></i>
+              <i class="fa fa-facebook fa-stack-1x"></i>
+            </span>
+          </a>
+
+          <a href="mailto:email@impulsideas.com">
+            <span class="fa-stack fa-2x">
+              <i class="fa fa-circle-thin fa-stack-2x"></i>
+              <i class="fa fa-envelope fa-stack-1x"></i>
+            </span>
+          </a>
+        </div>
+      </footer>
+
+    <!-- SCRIPTS -->
     <%= javascript_include_tag "application" %>
     <%= analytics_init if Rails.env.production? %>
-
+    <!-- FIXME: add it to the assets pipeline -->
     <script>
       $.getScript('//cdn.jsdelivr.net/isotope/1.5.25/jquery.isotope.min.js',function(){
         $('#projects_container').isotope({
