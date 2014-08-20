@@ -17,7 +17,9 @@
 #  project_url          :string(255)
 #  short_description    :text
 #
-
+# TODO: 3 min. products.
+# TODO: total_contributed (order payed and beyond) and total_completed ().
+#
 class Project < ActiveRecord::Base
   belongs_to :user
 

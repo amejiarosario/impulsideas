@@ -21,7 +21,11 @@
 #  index_orders_on_user_id                          (user_id)
 #  index_orders_on_workflow_state                   (workflow_state)
 #
-
+# TODO: order confirmation number (seller) [mobile].
+# TODO: send email to seller with coupon number.
+# TODO: send email to buyer with coupon secret.
+# TODO: is only completed when coupon number and secret match.
+# 
 class Order < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include Rails.application.routes.url_helpers
