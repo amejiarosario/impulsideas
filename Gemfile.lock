@@ -30,7 +30,11 @@ GEM
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
     arel (4.0.2)
+    autoprefixer-rails (2.2.0.20140804)
+      execjs
     bcrypt (3.1.7)
+    bootstrap-sass (3.2.0.1)
+      sass (~> 3.2)
     builder (3.1.4)
     capybara (2.4.1)
       mime-types (>= 1.16)
@@ -144,8 +148,6 @@ GEM
     less-rails (2.5.0)
       actionpack (>= 3.1)
       less (~> 2.5.0)
-    less-rails-bootstrap (3.2.0)
-      less-rails (~> 2.5.0)
     libv8 (3.16.14.3)
     listen (2.7.9)
       celluloid (>= 0.15.2)
@@ -330,6 +332,8 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  autoprefixer-rails
+  bootstrap-sass
   capybara
   carrierwave
   codeclimate-test-reporter
@@ -347,7 +351,6 @@ DEPENDENCIES
   jquery-turbolinks
   launchy
   less-rails
-  less-rails-bootstrap
   mini_magick
   newrelic_rpm
   omniauth-facebook (= 1.4.0)

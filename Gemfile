@@ -50,7 +50,8 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'devise'
-gem 'less-rails-bootstrap'
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
 gem 'jquery-turbolinks'
 gem 'font-awesome-rails'
 gem 'simple_form', '>= 3.0.0.rc'
