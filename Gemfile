@@ -50,10 +50,7 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'devise'
-gem 'bootstrap-sass'
-gem 'autoprefixer-rails'
 gem 'jquery-turbolinks'
-gem 'font-awesome-rails'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'paypal-sdk-adaptivepayments'
 gem 'paypal-sdk-rest'
@@ -68,6 +65,12 @@ gem 'newrelic_rpm'
 gem 'geocoder'
 gem 'workflow' # orders' state machine
 gem 'rack-cors', :require => 'rack/cors'
+
+# styles
+gem 'bootstrap-sass'
+gem 'modernizr-rails'
+gem 'autoprefixer-rails'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
